@@ -1,0 +1,49 @@
+description = "Default layout"
+
+[staticPage]
+useContent = 1
+default = 0
+==
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>{{ this.page.title }}</title>
+    <meta name="title" content="{{ this.page.meta_title }}">
+    <meta name="description" content="{{ this.page.meta_description }}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="OctoberCMS">
+
+    {% styles %}
+    <link rel="stylesheet" href="{{ 'assets/css/main.css'|theme }}">
+</head>
+<body>
+<div id="app" class="layout-default">
+    <div class="wrapper wrapper-header">
+        <div class="row row-header">
+            {% partial 'site/header' %}
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-main">
+        <div class="row row-main">
+            <div class="container">
+                {% page %}
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-footer">
+        <div class="row row-footer">
+            {% partial 'site/footer' %}
+        </div>
+    </div>
+</div>
+
+<script src="{{ 'assets/js/app.js'|theme }}"></script>
+{% framework extras %}
+{% scripts %}
+</body>
+</html>

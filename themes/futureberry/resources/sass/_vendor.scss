@@ -1,0 +1,73 @@
+@import "variables";
+
+/*
+ | ----------------------------------------------------------------------
+ |  Normalize.css
+ | ----------------------------------------------------------------------
+ |
+ | Normalize.css makes browsers render all elements more consistently
+ | and in line with modern standards.
+ |
+ | https://necolas.github.io/normalize.css/
+ */
+
+@import "~normalize.css/normalize.css";
+
+/*
+ | ----------------------------------------------------------------------
+ |  Breakpoint Sass
+ | ----------------------------------------------------------------------
+ |
+ | Breakpoint makes writing media queries in Sass super simple. Example
+ | usage:
+ |
+ | .user {
+ |     background-color: white;
+ |
+ |     @include breakpoint($md) { // @see _variables.scss
+ |         background-color: grey;
+ |     }
+ | }
+ |
+ | http://breakpoint-sass.com/
+ */
+
+@import "~breakpoint-sass/stylesheets/breakpoint";
+
+/*
+ | ----------------------------------------------------------------------
+ |  Bootstrap
+ | ----------------------------------------------------------------------
+ |
+ | Do not use Normalize.css alongside Bootstrap, since Bootstrap has
+ | it's own normalizer.
+ |
+ | https://getbootstrap.com/docs/4.4/getting-started/webpack/#installing-bootstrap
+ */
+
+//@import "~bootstrap/scss/bootstrap";
+
+/*
+ | ----------------------------------------------------------------------
+ |  Font Awesome
+ | ----------------------------------------------------------------------
+ |
+ | Webpack will copy Font Awesome fonts into fonts/
+ | directory automatically. Example usage:
+ |
+ | .user {
+ |     @extend %fa-icon;
+ |     @extend .far; // .fas Solid icons, .fab Brand icons.
+ |
+ |     &:before {
+ |         content: fa-content($fa-var-user);
+ |     }
+ | }
+ |
+ | https://fontawesome.com/how-to-use/on-the-web/using-with/sass
+ */
+
+//@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+//@import "~@fortawesome/fontawesome-free/scss/regular";
+//@import "~@fortawesome/fontawesome-free/scss/solid";
+//@import "~@fortawesome/fontawesome-free/scss/brands";

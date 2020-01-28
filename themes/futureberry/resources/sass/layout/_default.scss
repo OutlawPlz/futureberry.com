@@ -1,0 +1,19 @@
+.layout-default {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: $container;
+    margin: 0 auto;
+    padding: 0 $gap;
+
+    @include breakpoint($md) {
+        padding: 0 ($gap * 2);
+    }
+}
+
+.wrapper-main {
+    flex-grow: 1;
+}

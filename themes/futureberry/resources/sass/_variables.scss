@@ -1,0 +1,36 @@
+// ----- Fonts -----
+
+$font-size: 1.5rem; // .75rem: 12px | .875rem: 14px | 1rem: 16px | 1.125rem: 18px
+$line-height: 1.7;
+
+$sans-serif: Montserrat, sans-serif;
+$serif: serif;
+$monospace: Inconsolata, Consolas, monospace;
+
+
+// ----- Layout & Breakpoints -----
+//
+// This theme uses a mobile-first development
+// approach. Breakpoint sizes are inspired
+// by Bootstrap.
+
+$container: 48rem;
+$gap: $line-height * 1rem;
+
+$sm: 36rem; // 576px
+$md: 48rem; // 768px
+$lg: 62rem; // 992px
+$xl: 75rem; // 1200px
+
+// ----- Colors -----
+
+$text: #333333;
+$link: #0268fc;
+$futureberry: #f15024;
+
+// ----- Font Awesome -----
+//
+// Point this variable to your font folder where
+// Font Awesome fonts are stored.
+
+//$fa-font-path: '../webfonts';
