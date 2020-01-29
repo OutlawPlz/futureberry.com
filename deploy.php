@@ -17,7 +17,7 @@ set('default_stage', 'stage');
 
 // Release name
 set('release_name', function () {
-    return runLocally('git rev-parse --verify --short=7 HEAD');
+    return runLocally('git rev-parse --verify --short=7 origin/master');
 });
 
 // Shared files/dirs between deploys
@@ -34,6 +34,10 @@ inventory('hosts.yaml');
 //    ->set('deploy_path', '~/{{application}}');
 
 // Tasks
+task('october:up', function () {
+    run('{{bin/php}} {{release_path}}/artisan october:up');
+});
+
 task('build', function () {
     run('cd {{release_path}} && build');
 });
@@ -42,4 +46,4 @@ task('build', function () {
 after('deploy:failed', 'deploy:unlock');
 
 // Migrate database before symlink new release.
-before('deploy:symlink', 'artisan:migrate');
+before('deploy:symlink', 'october:up');
