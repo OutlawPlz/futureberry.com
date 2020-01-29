@@ -445,6 +445,10 @@ a:focus {
   text-decoration: none;
 }
 
+svg {
+  vertical-align: middle;
+}
+
 .layout-default {
   display: -webkit-box;
   display: flex;
