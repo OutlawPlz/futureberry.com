@@ -13361,9 +13361,12 @@ module.exports = g;
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_videoOverlay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/videoOverlay */ "./resources/js/components/videoOverlay.js");
 /*
  | ----------------------------------------------------------------------
  |  Bootstrap
@@ -13378,6 +13381,45 @@ try {
   window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
   window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"); // require('bootstrap');
 } catch (error) {}
+/*
+ | ----------------------------------------------------------------------
+ |  Components
+ | ----------------------------------------------------------------------
+ */
+
+
+
+Object(_components_videoOverlay__WEBPACK_IMPORTED_MODULE_0__["default"])();
+
+/***/ }),
+
+/***/ "./resources/js/components/videoOverlay.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/videoOverlay.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var keywords = document.querySelectorAll('.keyword');
+  var video = document.querySelector('#video');
+  var content = document.querySelector('.row-main');
+  keywords.forEach(function (keyword) {
+    keyword.addEventListener('mouseenter', function (event) {
+      content.classList.add('hidden');
+      video.src = event.target.dataset.video;
+      video.play();
+      video.classList.add('shown');
+    });
+    keyword.addEventListener('mouseout', function (event) {
+      video.pause();
+      content.classList.remove('hidden');
+      video.classList.remove('shown');
+    });
+  });
+});
 
 /***/ }),
 

@@ -15,3 +15,13 @@ try {
 
     // require('bootstrap');
 } catch (error) {}
+
+/*
+ | ----------------------------------------------------------------------
+ |  Components
+ | ----------------------------------------------------------------------
+ */
+
+import videoOverlay from './components/videoOverlay';
+
+videoOverlay();

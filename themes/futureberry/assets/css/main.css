@@ -549,6 +549,36 @@ svg {
   padding: 0.85rem 0;
 }
 
+.row-main {
+  color: #333333;
+}
+
+.row-main.hidden {
+  color: transparent;
+}
+
+.keyword {
+  color: #f15024;
+}
+
+#video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#video.shown {
+  opacity: 1;
+}
+
 @media (min-width: 48rem){
   .container {
     padding: 0 3.4rem;
