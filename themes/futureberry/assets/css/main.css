@@ -551,6 +551,8 @@ svg {
 
 .row-main {
   color: #333333;
+  -webkit-transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out;
 }
 
 .row-main.hidden {
