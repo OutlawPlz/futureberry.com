@@ -26,7 +26,7 @@ export default function () {
     });
 
     async function playVideo(keyword) {
-        video.src = keyword.dataset.video;
+        video.src = keyword.dataset.video_url;
 
         await video.play();
 

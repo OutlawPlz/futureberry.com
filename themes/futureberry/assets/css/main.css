@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat&display=swap);/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,900,900i&display=swap);/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
    ========================================================================== */
@@ -436,7 +436,8 @@ p {
 
 a {
   color: #0268fc;
-  text-decoration: underline;
+  -webkit-text-decoration: underline 2px;
+          text-decoration: underline 2px;
 }
 
 a:hover,
@@ -547,6 +548,17 @@ svg {
 #logo {
   width: 17rem;
   padding: 0.85rem 0;
+}
+
+.wrapper-footer {
+  color: white;
+  background-color: #d0cfcf;
+  padding: 1.7rem 0;
+}
+
+.block-our-homes .block__title {
+  font-size: 1.5rem;
+  text-transform: uppercase;
 }
 
 .row-main {

@@ -28715,7 +28715,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              video.src = keyword.dataset.video;
+              video.src = keyword.dataset.video_url;
               _context.next = 3;
               return video.play();
 
