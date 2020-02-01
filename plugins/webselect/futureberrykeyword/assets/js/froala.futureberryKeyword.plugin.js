@@ -1,37 +1,19 @@
 (function ($) {
     const FroalaEditor = $.FroalaEditor;
 
-    $.oc.richEditorButtons.splice(3, 0, 'keywordPopup');
-
-    FroalaEditor.DefineIcon('keywordPopup', { NAME: 'diamond' });
-    FroalaEditor.RegisterCommand('keywordPopup', {
-        title: 'FUTUREBERRY Keyword',
-        undo: false,
-        focus: false,
-        plugin: 'futureberryKeyword',
-
-        callback: function () {
-            if ( ! this.popups.isVisible('futureberryKeyword.popup')) {
-                return this.futureberryKeyword.showPopup();
-            }
-
-            if (this.$el.find('.fr-marker')) {
-                this.events.disableBlur();
-                this.selection.restore();
-            }
-
-            this.popups.hide('futureberryKeyword.popup');
-        }
-    });
+    $.oc.richEditorButtons.splice(3, 0, 'keyword');
 
     Object.assign(FroalaEditor.POPUP_TEMPLATES, {
-        'futureberryKeyword.popup': '[_CUSTOM_LAYER_]'
+        'futureberry.popup': '[_CUSTOM_LAYER_]'
     });
 
-    FroalaEditor.PLUGINS.futureberryKeyword = function (editor) {
-        function initPopup() {
-            let template = FroalaEditor.POPUP_TEMPLATES.customPopup;
+    Object.assign(FroalaEditor.DEFAULTS, {
+        popupButtons: ['popupClose', '|', 'popupButton1', 'popupButton2'],
+    });
 
+    FroalaEditor.PLUGINS.futureberry = function (editor) {
+        function initPopup () {
+            let template = FroalaEditor.POPUP_TEMPLATES.customPopup;
             if (typeof template == 'function') template = template.apply(editor);
 
             template = {
@@ -51,55 +33,120 @@
                     </div>`
             };
 
-            let $popup = editor.popups.create('futureberryKeyword.popup', template);
+            editor.popups.onHide('futureberry.popup', function () {
+                clearKeywordValues();
+            });
 
-            return $popup;
+            return editor.popups.create('futureberry.popup', template);
         }
 
-        function showPopup() {
-            let $popup = editor.popups.get('futureberryKeyword.popup');
+        function showPopup () {
+            let $popup = editor.popups.get('futureberry.popup');
 
             if ( ! $popup) $popup = initPopup();
 
-            editor.popups.setContainer('futureberryKeyword.popup', editor.$tb);
+            editor.popups.setContainer('futureberry.popup', editor.$tb);
 
-            let $button = editor.$tb.find('.fr-command[data-cmd="keywordPopup"]');
+            let $btn = editor.$tb.find('.fr-command[data-cmd="keyword"]');
 
-            let left = $button.offset().left + $button.outerWidth() / 2;
-            let top = $button.offset().top + (editor.opts.toolbarBottom ? 10 : $button.outerHeight() - 10);
+            let left = $btn.offset().left + $btn.outerWidth() / 2;
+            let top = $btn.offset().top + (editor.opts.toolbarBottom ? 10 : $btn.outerHeight() - 10);
 
-            editor.popups.show('futureberryKeyword.popup', left, top, $button.outerHeight());
+            setKeywordValues();
+
+            editor.popups.show('futureberry.popup', left, top, $btn.outerHeight());
         }
 
-        function hidePopup() {
-            editor.popups.hide('futureberryKeyword.popup');
+        function hidePopup () {
+            editor.popups.hide('futureberry.popup');
         }
 
-        function getKeywordValues() {
-            let $popup = editor.popups.get('futureberryKeyword.popup');
+        function getKeywordValues () {
+            let $popup = editor.popups.get('futureberry.popup');
 
             let label = $popup.find('input.fr-keyword-attr[name="label"]').val();
             let url = $popup.find('input.fr-keyword-attr[name="url"]').val();
 
             return {
                 label: label.trim(),
-                url: url.trim(),
+                videoUrl: url.trim(),
             }
+        }
+
+        function setKeywordValues () {
+            let $popup = editor.popups.get('futureberry.popup');
+            let element = editor.selection.element();
+
+            if (element.classList.contains('keyword')) {
+                $popup.find('input.fr-keyword-attr[name="label"]').val(element.innerText);
+                $popup.find('input.fr-keyword-attr[name="url"]').val(element.dataset.video_url);
+
+                return;
+            }
+
+            $popup.find('input.fr-keyword-attr[name="label"]').val(editor.selection.text());
+        }
+
+        function clearKeywordValues () {
+            let $popup = editor.popups.get('futureberry.popup');
+
+            $popup.find('input.fr-keyword-attr[name="label"]').val('');
+            $popup.find('input.fr-keyword-attr[name="url"]').val('');
         }
 
         return {
             showPopup: showPopup,
             hidePopup: hidePopup,
             getKeywordValues: getKeywordValues,
+            clearKeywordValues: clearKeywordValues,
         }
     };
 
-    FroalaEditor.RegisterCommand('keywordInsert', {
-        callback: function () {
-            let values = this.futureberryKeyword.getKeywordValues();
+    FroalaEditor.DefineIcon('buttonIcon', { NAME: 'asterisk'});
+    FroalaEditor.RegisterCommand('keyword', {
+        title: 'Show Popup',
+        icon: 'buttonIcon',
+        plugin: 'futureberry',
+        undo: false,
+        focus: false,
+        popup: true,
 
-            // TODO: Validate keyword values.
-            this.html.insert(`<span class="keyword" data-video="${values.url}">${values.label}</span>`);
+        callback: function () {
+            if ( ! this.popups.isVisible('futureberry.popup')) {
+                return this.futureberry.showPopup();
+            }
+
+            if (this.$el.find('.fr-marker')) {
+                this.events.disableBlur();
+                this.selection.restore();
+            }
+
+            this.popups.hide('futureberry.popup');
+        }
+    });
+
+    FroalaEditor.RegisterCommand('keywordInsert', {
+        title: 'Close',
+        focus: true,
+        undo: true,
+        refreshAfterCallback: true,
+
+        callback: function () {
+            let values = this.futureberry.getKeywordValues();
+            let element = this.selection.element();
+
+            if (element.classList.contains('keyword')) {
+                element.innerText = values.label;
+                element.dataset.video_url = values.videoUrl;
+
+                this.popups.hide('futureberry.popup');
+
+                return;
+            }
+
+            this.html.insert(`<span class="keyword" data-video_url="${values.videoUrl}">${values.label}</span>`);
+
+            this.popups.hide('futureberry.popup');
         }
     });
 })(jQuery);

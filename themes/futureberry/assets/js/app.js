@@ -28686,7 +28686,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   var content = document.querySelector('.row-main');
   window.addEventListener('scroll', _.debounce(function (event) {
     if (!video.paused) pauseVideo(event.target);
-  }, 300));
+  }, 150));
   keywords.forEach(function (keyword) {
     if ('ontouchstart' in window || navigator.MaxTouchPoints > 0) {
       keyword.addEventListener('click', function (event) {

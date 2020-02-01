@@ -5,7 +5,7 @@ export default function () {
 
     window.addEventListener('scroll', _.debounce(function (event) {
         if ( ! video.paused) pauseVideo(event.target);
-    }, 300));
+    }, 150));
 
     keywords.forEach(keyword => {
         if (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0)) {
