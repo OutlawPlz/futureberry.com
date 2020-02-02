@@ -579,8 +579,8 @@ svg {
   transition: color 0.3s ease-in-out;
 }
 
-.row-main.hidden {
-  color: transparent;
+.row-main.hidden p {
+  color: transparent !important;
 }
 
 .keyword {

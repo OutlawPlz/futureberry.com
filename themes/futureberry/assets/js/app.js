@@ -28712,6 +28712,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     _playVideo = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(keyword) {
+      var link;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -28721,11 +28722,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return video.play();
 
             case 3:
-              keyword.querySelector('.keyword__link').classList.add('active');
+              link = keyword.querySelector('.keyword__link');
+              if (link) link.classList.add('active');
               content.classList.add('hidden');
               video.classList.add('shown');
 
-            case 6:
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -28737,7 +28739,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
   function pauseVideo(keyword) {
     video.pause();
-    document.querySelector('.keyword__link.active').classList.remove('active');
+    var link = document.querySelector('.keyword__link.active');
+    if (link) link.classList.remove('active');
     content.classList.remove('hidden');
     video.classList.remove('shown');
   }

@@ -34,7 +34,10 @@ export default function () {
 
         await video.play();
 
-        keyword.querySelector('.keyword__link').classList.add('active');
+        let link = keyword.querySelector('.keyword__link');
+
+        if (link) link.classList.add('active');
+
         content.classList.add('hidden');
         video.classList.add('shown');
     }
@@ -42,7 +45,10 @@ export default function () {
     function pauseVideo(keyword) {
         video.pause();
 
-        document.querySelector('.keyword__link.active').classList.remove('active');
+        let link = document.querySelector('.keyword__link.active');
+
+        if (link) link.classList.remove('active');
+
         content.classList.remove('hidden');
         video.classList.remove('shown');
     }

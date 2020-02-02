@@ -95,25 +95,22 @@
 
         function setKeywordValues () {
             let popup = editor.popups.get('futureberry.popup')[0];
-            let element = editor.selection.element();
+            let element = editor.selection.element().parentElement;
 
-            if (element.classList.contains('keyword__label')
-                || element.classList.contains('keyword__link')) {
-
-                let hotword = element.parentElement;
-                let label = hotword.querySelector('.keyword__label');
-                let link = hotword.querySelector('.keyword__link');
-
-                popup.querySelector('#fr-hotword-label-input').value = label.innerText;
-                popup.querySelector('#fr-hotword-video-url-input').value = hotword.dataset.video_url;
-
-                popup.querySelector('#fr-hotword-link-label-input').value = link.innerText;
-                popup.querySelector('#fr-hotword-link-url-input').value = link.href;
-
-                return;
+            if ( ! element.classList.contains('keyword')) {
+                return (popup.querySelector('#fr-hotword-label-input').value = editor.selection.text());
             }
 
-            popup.querySelector('#fr-hotword-label-input').value = editor.selection.text();
+            let label = element.querySelector('.keyword__label');
+            let link = element.querySelector('.keyword__link');
+
+            popup.querySelector('#fr-hotword-label-input').value = label.innerText;
+            popup.querySelector('#fr-hotword-video-url-input').value = element.dataset.video_url;
+
+            if ( ! link) return;
+
+            popup.querySelector('#fr-hotword-link-label-input').value = link.innerText;
+            popup.querySelector('#fr-hotword-link-url-input').value = link.href;
         }
 
         function clearKeywordValues () {
@@ -204,38 +201,32 @@
         refreshAfterCallback: true,
 
         callback: function () {
-            let hotword = '';
-            let element = this.selection.element();
-
-            if (element.classList.contains('keyword__label')
-                || element.classList.contains('keyword__link')) {
-                hotword = element.parentElement;
-            }
-
             let values = this.futureberry.getHotwordValues();
-            let link = '';
+            let element = this.selection.element().parentElement;
+            let link = element.querySelector('.keyword__link');
 
-            if ( ! hotword) {
-                if (values.linkUrl && values.linkLabel) {
-                    link = `<a href="${values.linkUrl}" class="keyword__link">${values.linkLabel}</a>`;
-                }
+            if ( ! values.label || ! values.videoUrl) return this.popups.hide('futureberry.popup');
 
-                this.html.insert(`<span class="keyword" data-video_url="${values.videoUrl}"><span class="keyword__label">${values.label}</span>${link}</span>`);
+            let hotword = `<span class="keyword" data-video_url="${values.videoUrl}"><span class="keyword__label">${values.label}</span><a href="${values.linkUrl}" class="keyword__link">${values.linkLabel}</a></span>`;
+
+            if ( ! element.classList.contains('keyword')) {
+                this.html.insert(hotword);
+
+                return this.popups.hide('futureberry.popup');
             }
 
-            if (hotword) {
-                hotword.dataset.video_url = values.videoUrl;
-                hotword.querySelector('.keyword__label').innerText = values.label;
+            if (values.linkLabel && values.linkUrl) {
+                (element.outerHTML = hotword);
 
-                if (values.linkLabel && values.linkUrl) {
-                    hotword.querySelector('.keyword__link').innerText = values.linkLabel;
-                    hotword.querySelector('.keyword__link').href = values.linkUrl;
-                } else {
-                    hotword.querySelector('.keyword__link').remove();
-                }
+                return this.popups.hide('futureberry.popup');
             }
 
-            this.popups.hide('futureberry.popup');
+            element.dataset.video_url = values.videoUrl;
+            element.firstElementChild.innerText = values.label;
+
+            if (link) element.removeChild(link);
+
+            return this.popups.hide('futureberry.popup');
         }
     });
 })(jQuery);
