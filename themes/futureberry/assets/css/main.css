@@ -572,7 +572,33 @@ svg {
 }
 
 .keyword {
+  position: relative;
   color: #f15024;
+  padding: 0 0.425rem;
+}
+
+.keyword__link {
+  color: transparent;
+  background-color: transparent;
+  text-decoration: none;
+  border-radius: 0.85rem;
+  position: absolute;
+  right: 0.85rem;
+  z-index: -1;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  padding: 0 0.85rem;
+  -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, right 0.3s ease-in-out, z-index 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, right 0.3s ease-in-out, z-index 0.3s ease-in-out;
+  -webkit-transition-delay: 0.7s;
+          transition-delay: 0.7s;
+}
+
+.keyword__link.active {
+  color: white;
+  background-color: #0268fc;
+  right: 0;
+  z-index: 0;
 }
 
 #video {

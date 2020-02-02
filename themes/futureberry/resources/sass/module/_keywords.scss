@@ -8,7 +8,36 @@
 }
 
 .keyword {
+    position: relative;
     color: $futureberry;
+    padding: 0 ($gap * .25);
+}
+
+.keyword__link {
+    color: transparent;
+    background-color: transparent;
+    text-decoration: none;
+    border-radius: ($line-height * .5rem);
+
+    position: absolute;
+    right: $gap * .5;
+    z-index: -1;
+    transform: translateX(100%);
+    padding: 0 ($gap / 2);
+
+    transition:
+        color .3s ease-in-out,
+        background-color .3s ease-in-out,
+        right .3s ease-in-out,
+        z-index .3s ease-in-out;
+    transition-delay: .7s;
+
+    &.active {
+        color: white;
+        background-color: $link;
+        right: 0;
+        z-index: 0;
+    }
 }
 
 #video {

@@ -21,6 +21,10 @@ export default function () {
         });
 
         keyword.addEventListener('mouseout', event => {
+            if (event.relatedTarget.classList.contains('keyword') ||
+                event.relatedTarget.classList.contains('keyword__link') ||
+                event.relatedTarget.classList.contains('keyword__label')) return;
+
             pauseVideo(event.target);
         })
     });
@@ -30,6 +34,7 @@ export default function () {
 
         await video.play();
 
+        keyword.querySelector('.keyword__link').classList.add('active');
         content.classList.add('hidden');
         video.classList.add('shown');
     }
@@ -37,6 +42,7 @@ export default function () {
     function pauseVideo(keyword) {
         video.pause();
 
+        document.querySelector('.keyword__link.active').classList.remove('active');
         content.classList.remove('hidden');
         video.classList.remove('shown');
     }

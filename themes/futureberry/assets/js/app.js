@@ -28699,6 +28699,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       playVideo(event.target);
     });
     keyword.addEventListener('mouseout', function (event) {
+      if (event.relatedTarget.classList.contains('keyword') || event.relatedTarget.classList.contains('keyword__link') || event.relatedTarget.classList.contains('keyword__label')) return;
       pauseVideo(event.target);
     });
   });
@@ -28720,10 +28721,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return video.play();
 
             case 3:
+              keyword.querySelector('.keyword__link').classList.add('active');
               content.classList.add('hidden');
               video.classList.add('shown');
 
-            case 5:
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -28735,6 +28737,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
   function pauseVideo(keyword) {
     video.pause();
+    document.querySelector('.keyword__link.active').classList.remove('active');
     content.classList.remove('hidden');
     video.classList.remove('shown');
   }
