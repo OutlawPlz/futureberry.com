@@ -411,11 +411,11 @@ template {
 
 html {
   font-size: 100%;
-  line-height: 1.7;
+  line-height: 1.3;
 }
 
 body {
-  color: #333333;
+  color: #545252;
   font-family: Montserrat, sans-serif;
   font-size: 1.5rem;
 }
@@ -426,16 +426,16 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.275;
-  margin: 1.7rem 0;
+  line-height: 0.975;
+  margin: 1.3rem 0;
 }
 
 p {
-  margin: 1.7rem 0;
+  margin: 1.3rem 0;
 }
 
 a {
-  color: #0268fc;
+  color: #5995fb;
   -webkit-text-decoration: underline 2px;
           text-decoration: underline 2px;
 }
@@ -530,12 +530,24 @@ svg {
 .container {
   max-width: 48rem;
   margin: 0 auto;
-  padding: 0 1.7rem;
+  padding: 0 1.3rem;
 }
 
 .wrapper-main {
   -webkit-box-flex: 1;
           flex-grow: 1;
+}
+
+.wrapper-main {
+  padding: 1.3rem 0;
+}
+
+#main p {
+  margin: 0;
+}
+
+#main p:nth-child(odd) {
+  color: #f6924e;
 }
 
 #header {
@@ -547,13 +559,13 @@ svg {
 
 #logo {
   width: 17rem;
-  padding: 0.85rem 0;
+  padding: 0.65rem 0;
 }
 
 .wrapper-footer {
   color: white;
   background-color: #d0cfcf;
-  padding: 1.7rem 0;
+  padding: 1.3rem 0;
 }
 
 .block-our-homes .block__title {
@@ -562,7 +574,7 @@ svg {
 }
 
 .row-main {
-  color: #333333;
+  color: #545252;
   -webkit-transition: color 0.3s ease-in-out;
   transition: color 0.3s ease-in-out;
 }
@@ -573,21 +585,21 @@ svg {
 
 .keyword {
   position: relative;
-  color: #f15024;
-  padding: 0 0.425rem;
+  color: #5995fb;
+  padding: 0 0.325rem;
 }
 
 .keyword__link {
   color: transparent;
   background-color: transparent;
   text-decoration: none;
-  border-radius: 0.85rem;
+  border-radius: 0.65rem;
   position: absolute;
-  right: 0.85rem;
+  right: 0.65rem;
   z-index: -1;
   -webkit-transform: translateX(100%);
           transform: translateX(100%);
-  padding: 0 0.85rem;
+  padding: 0 0.65rem;
   -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, right 0.3s ease-in-out, z-index 0.3s ease-in-out;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, right 0.3s ease-in-out, z-index 0.3s ease-in-out;
   -webkit-transition-delay: 0.7s;
@@ -596,7 +608,7 @@ svg {
 
 .keyword__link.active {
   color: white;
-  background-color: #0268fc;
+  background-color: #5995fb;
   right: 0;
   z-index: 0;
 }
@@ -621,7 +633,7 @@ svg {
 
 @media (min-width: 48rem){
   .container {
-    padding: 0 3.4rem;
+    padding: 0 2.6rem;
   }
 }
 

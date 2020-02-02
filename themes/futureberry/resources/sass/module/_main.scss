@@ -1,0 +1,13 @@
+.wrapper-main {
+    padding: $gap 0;
+}
+
+#main {
+    p {
+        margin: 0;
+    }
+
+    p:nth-child(odd) {
+        color: #f6924e;
+    }
+}
