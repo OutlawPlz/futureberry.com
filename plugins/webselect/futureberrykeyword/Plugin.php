@@ -42,7 +42,7 @@ class Plugin extends PluginBase
     public function boot()
     {
         RichEditor::extend(function (RichEditor $widget) {
-            $widget->addJs('/plugins/webselect/futureberrykeyword/assets/js/froala.futureberryKeyword.plugin.js ');
+            $widget->addJs('/plugins/webselect/futureberrykeyword/assets/js/froala.futureberry.plugin.js ');
         });
     }
 
