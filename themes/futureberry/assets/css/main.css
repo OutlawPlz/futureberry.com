@@ -415,7 +415,7 @@ html {
 }
 
 body {
-  color: #545252;
+  color: #3a3d44;
   font-family: Montserrat, sans-serif;
   font-size: 1.5rem;
 }
@@ -547,7 +547,7 @@ svg {
 }
 
 #main p:nth-child(odd) {
-  color: #f6924e;
+  color: #f15024;
 }
 
 #header {
@@ -573,19 +573,32 @@ svg {
   text-transform: uppercase;
 }
 
-.row-main {
-  color: #545252;
+#main {
+  color: #3a3d44;
   -webkit-transition: color 0.3s ease-in-out;
   transition: color 0.3s ease-in-out;
 }
 
-.row-main.hidden p {
-  color: transparent !important;
+#main .keyword {
+  color: #5995fb;
+}
+
+#main.hidden p,
+#main.hidden ul,
+#main.hidden a {
+  color: transparent;
+}
+
+#main.hidden .keyword {
+  color: transparent;
+}
+
+#main.hidden .keyword.active {
+  color: #5995fb;
 }
 
 .keyword {
   position: relative;
-  color: #5995fb;
   padding: 0 0.325rem;
 }
 
@@ -602,12 +615,12 @@ svg {
   padding: 0 0.65rem;
   -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, right 0.3s ease-in-out, z-index 0.3s ease-in-out;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, right 0.3s ease-in-out, z-index 0.3s ease-in-out;
-  -webkit-transition-delay: 0.7s;
-          transition-delay: 0.7s;
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
 }
 
-.keyword__link.active {
-  color: white;
+.keyword.active a.keyword__link {
+  color: white !important;
   background-color: #5995fb;
   right: 0;
   z-index: 0;

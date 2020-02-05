@@ -28681,50 +28681,61 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var keywords = document.querySelectorAll('.keyword');
+  var isTouch = 'ontouchstart' in window || navigator.MaxTouchPoints > 0;
+  var manifest = document.querySelector('#main');
   var video = document.querySelector('#video');
-  var content = document.querySelector('.row-main');
-  window.addEventListener('scroll', _.debounce(function (event) {
-    if (!video.paused) pauseVideo(event.target);
-  }, 150));
-  keywords.forEach(function (keyword) {
-    if ('ontouchstart' in window || navigator.MaxTouchPoints > 0) {
-      keyword.addEventListener('click', function (event) {
-        video.paused ? playVideo(event.target) : pauseVideo(event.target);
+
+  if (isTouch) {
+    window.addEventListener('click', function (event) {
+      var isHotword = event.target.classList.contains('keyword') || event.target.classList.contains('keyword__label');
+      var src = getSrcAttribute(event.target);
+
+      if (!isHotword) {
+        return videoPause();
+      }
+
+      video.paused ? videoPlay(src) : videoPause();
+    });
+  } else {
+    document.querySelectorAll('.keyword').forEach(function (keyword) {
+      keyword.addEventListener('mouseenter', function (event) {
+        var src = getSrcAttribute(event.target);
+        videoPlay(src);
       });
-      return;
-    }
-
-    keyword.addEventListener('mouseenter', function (event) {
-      playVideo(event.target);
+      keyword.addEventListener('mouseout', function (event) {
+        if (event.relatedTarget.classList.contains('keyword') || event.relatedTarget.classList.contains('keyword__link') || event.relatedTarget.classList.contains('keyword__label')) return;
+        videoPause();
+      });
     });
-    keyword.addEventListener('mouseout', function (event) {
-      if (event.relatedTarget.classList.contains('keyword') || event.relatedTarget.classList.contains('keyword__link') || event.relatedTarget.classList.contains('keyword__label')) return;
-      pauseVideo(event.target);
-    });
-  });
-
-  function playVideo(_x) {
-    return _playVideo.apply(this, arguments);
   }
 
-  function _playVideo() {
-    _playVideo = _asyncToGenerator(
+  window.addEventListener('scroll', _.debounce(function (event) {
+    if (!video.paused) {
+      videoPause();
+    }
+  }, 150));
+
+  function videoPlay(_x) {
+    return _videoPlay.apply(this, arguments);
+  }
+
+  function _videoPlay() {
+    _videoPlay = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(keyword) {
-      var link;
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(src) {
+      var hotword;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              video.src = keyword.dataset.video_url;
+              video.src = src;
               _context.next = 3;
               return video.play();
 
             case 3:
-              link = keyword.querySelector('.keyword__link');
-              if (link) link.classList.add('active');
-              content.classList.add('hidden');
+              hotword = document.querySelector("span[data-video_url=\"".concat(src, "\"]"));
+              hotword.classList.add('active');
+              manifest.classList.add('hidden');
               video.classList.add('shown');
 
             case 7:
@@ -28734,15 +28745,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee);
     }));
-    return _playVideo.apply(this, arguments);
+    return _videoPlay.apply(this, arguments);
   }
 
-  function pauseVideo(keyword) {
+  function videoPause() {
+    var src = video.src;
     video.pause();
-    var link = document.querySelector('.keyword__link.active');
-    if (link) link.classList.remove('active');
-    content.classList.remove('hidden');
+    var hotword = document.querySelector("span[data-video_url=\"".concat(src, "\"]"));
+    hotword.classList.remove('active');
+    manifest.classList.remove('hidden');
     video.classList.remove('shown');
+  }
+
+  function getSrcAttribute(element) {
+    var src = '';
+
+    if (element.classList.contains('keyword')) {
+      src = element.dataset.video_url;
+    }
+
+    if (element.parentElement.classList.contains('keyword')) {
+      src = element.parentElement.dataset.video_url;
+    }
+
+    return src;
   }
 });
 

@@ -1,42 +1,78 @@
-.row-main {
+//.row-main {
+//    color: $text;
+//    transition: color .3s ease-in-out;
+//
+//    &.hidden p {
+//        color: transparent !important;
+//    }
+//
+//    &.hidden {
+//        p, ul, a, .keyword {
+//            color: transparent;
+//        }
+//
+//        .keyword:hover {
+//            color: $link !important;
+//        }
+//    }
+//
+//}
+
+#main {
     color: $text;
     transition: color .3s ease-in-out;
 
-    &.hidden p {
-        color: transparent !important;
+    .keyword {
+        color: $link;
+    }
+
+    &.hidden {
+        p, ul, a {
+            color: transparent;
+        }
+
+        .keyword {
+            color: transparent;
+
+            &.active {
+                color: $link;
+            }
+        }
     }
 }
 
 .keyword {
     position: relative;
-    color: $futureberry;
     padding: 0 ($gap * .25);
-}
 
-.keyword__link {
-    color: transparent;
-    background-color: transparent;
-    text-decoration: none;
-    border-radius: ($line-height * .5rem);
+    &__link {
+        color: transparent;
+        background-color: transparent;
+        text-decoration: none;
+        border-radius: ($line-height * .5rem);
 
-    position: absolute;
-    right: $gap * .5;
-    z-index: -1;
-    transform: translateX(100%);
-    padding: 0 ($gap / 2);
+        position: absolute;
+        right: $gap * .5;
+        z-index: -1;
+        transform: translateX(100%);
+        padding: 0 ($gap / 2);
 
-    transition:
-        color .3s ease-in-out,
-        background-color .3s ease-in-out,
-        right .3s ease-in-out,
-        z-index .3s ease-in-out;
-    transition-delay: .7s;
+        transition:
+            color .3s ease-in-out,
+            background-color .3s ease-in-out,
+            right .3s ease-in-out,
+            z-index .3s ease-in-out;
+        transition-delay: .5s;
+    }
 
     &.active {
-        color: white;
-        background-color: $link;
-        right: 0;
-        z-index: 0;
+
+        a.keyword__link {
+            color: white !important;
+            background-color: $link;
+            right: 0;
+            z-index: 0;
+        }
     }
 }
 

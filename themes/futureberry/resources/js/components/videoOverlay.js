@@ -1,55 +1,82 @@
 export default function () {
-    let keywords = document.querySelectorAll('.keyword');
+    let isTouch = ('ontouchstart' in window) || (navigator.MaxTouchPoints > 0);
+    let manifest = document.querySelector('#main');
     let video = document.querySelector('#video');
-    let content = document.querySelector('.row-main');
 
-    window.addEventListener('scroll', _.debounce(function (event) {
-        if ( ! video.paused) pauseVideo(event.target);
-    }, 150));
+    if (isTouch) {
+        window.addEventListener('click', event => {
+            let isHotword = event.target.classList.contains('keyword') ||
+                event.target.classList.contains('keyword__label');
 
-    keywords.forEach(keyword => {
-        if (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0)) {
-            keyword.addEventListener('click', event => {
-                video.paused ? playVideo(event.target) : pauseVideo(event.target);
+            let src = getSrcAttribute(event.target);
+
+            if ( ! isHotword) {
+                return videoPause();
+            }
+
+            video.paused ? videoPlay(src) : videoPause();
+        });
+    } else {
+        document.querySelectorAll('.keyword').forEach(keyword => {
+            keyword.addEventListener('mouseenter', event => {
+                let src = getSrcAttribute(event.target);
+
+                videoPlay(src);
             });
 
-            return;
-        }
+            keyword.addEventListener('mouseout', event => {
+                if (event.relatedTarget.classList.contains('keyword') ||
+                    event.relatedTarget.classList.contains('keyword__link') ||
+                    event.relatedTarget.classList.contains('keyword__label')) return;
 
-        keyword.addEventListener('mouseenter', event => {
-            playVideo(event.target);
+                videoPause();
+            });
         });
+    }
 
-        keyword.addEventListener('mouseout', event => {
-            if (event.relatedTarget.classList.contains('keyword') ||
-                event.relatedTarget.classList.contains('keyword__link') ||
-                event.relatedTarget.classList.contains('keyword__label')) return;
+    window.addEventListener('scroll', _.debounce(function (event) {
+        if ( ! video.paused) {
+            videoPause();
+        }
+    }, 150));
 
-            pauseVideo(event.target);
-        })
-    });
-
-    async function playVideo(keyword) {
-        video.src = keyword.dataset.video_url;
+    async function videoPlay(src)
+    {
+        video.src = src;
 
         await video.play();
 
-        let link = keyword.querySelector('.keyword__link');
+        let hotword = document.querySelector(`span[data-video_url="${src}"]`);
 
-        if (link) link.classList.add('active');
-
-        content.classList.add('hidden');
+        hotword.classList.add('active');
+        manifest.classList.add('hidden');
         video.classList.add('shown');
     }
 
-    function pauseVideo(keyword) {
+    function videoPause()
+    {
+        let src = video.src;
         video.pause();
 
-        let link = document.querySelector('.keyword__link.active');
+        let hotword = document.querySelector(`span[data-video_url="${src}"]`);
 
-        if (link) link.classList.remove('active');
-
-        content.classList.remove('hidden');
+        hotword.classList.remove('active');
+        manifest.classList.remove('hidden');
         video.classList.remove('shown');
+    }
+
+    function getSrcAttribute(element)
+    {
+        let src = '';
+
+        if (element.classList.contains('keyword')) {
+            src = element.dataset.video_url;
+        }
+
+        if (element.parentElement.classList.contains('keyword')) {
+            src = element.parentElement.dataset.video_url;
+        }
+
+        return src;
     }
 }
