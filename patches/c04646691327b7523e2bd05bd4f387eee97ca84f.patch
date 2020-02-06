@@ -1,0 +1,64 @@
+From c04646691327b7523e2bd05bd4f387eee97ca84f Mon Sep 17 00:00:00 2001
+From: Ben Thomson <git@alfreido.com>
+Date: Wed, 15 Jan 2020 06:47:25 +0800
+Subject: [PATCH] Set Dropzone.js uploaders to have no time limit (#4878)
+
+The upgrade to the latest Dropzone.js brought in a new `timeout` configuration variable, which defaults to 30s. This removes the time limit and restores original functionality.
+
+Fixes #4869
+---
+ modules/backend/formwidgets/fileupload/assets/js/fileupload.js  | 1 +
+ .../widgets/mediamanager/assets/js/mediamanager-browser-min.js  | 2 +-
+ modules/backend/widgets/mediamanager/assets/js/mediamanager.js  | 1 +
+ modules/cms/widgets/assetlist/assets/js/assetlist.js            | 1 +
+ 4 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/modules/backend/formwidgets/fileupload/assets/js/fileupload.js b/modules/backend/formwidgets/fileupload/assets/js/fileupload.js
+index bd4e50b43b..88b4cd4744 100644
+--- a/modules/backend/formwidgets/fileupload/assets/js/fileupload.js
++++ b/modules/backend/formwidgets/fileupload/assets/js/fileupload.js
+@@ -104,6 +104,7 @@
+             previewsContainer: this.$filesContainer.get(0),
+             maxFiles: !this.options.isMulti ? 1 : null,
+             maxFilesize: this.options.maxFilesize,
++            timeout: 0,
+             headers: {}
+         }
+ 
+diff --git a/modules/backend/widgets/mediamanager/assets/js/mediamanager-browser-min.js b/modules/backend/widgets/mediamanager/assets/js/mediamanager-browser-min.js
+index bf718d14a2..cda083dc47 100644
+--- a/modules/backend/widgets/mediamanager/assets/js/mediamanager-browser-min.js
++++ b/modules/backend/widgets/mediamanager/assets/js/mediamanager-browser-min.js
+@@ -276,7 +276,7 @@ this.scrollContentElement.insertBefore(this.selectionMarker,this.scrollContentEl
+ MediaManager.prototype.doObjectsCollide=function(aTop,aLeft,aWidth,aHeight,bTop,bLeft,bWidth,bHeight){return!(((aTop+aHeight)<(bTop))||(aTop>(bTop+bHeight))||((aLeft+aWidth)<bLeft)||(aLeft>(bLeft+bWidth)))}
+ MediaManager.prototype.initUploader=function(){if(!this.itemListElement||this.options.readOnly)
+ return
+-var uploaderOptions={clickable:this.$el.find('[data-control="upload"]').get(0),url:this.options.url,paramName:'file_data',headers:{},createImageThumbnails:false}
++var uploaderOptions={clickable:this.$el.find('[data-control="upload"]').get(0),url:this.options.url,paramName:'file_data',timeout:0,headers:{},createImageThumbnails:false}
+ if(this.options.uniqueId){uploaderOptions.headers['X-OCTOBER-FILEUPLOAD']=this.options.uniqueId}
+ var token=$('meta[name="csrf-token"]').attr('content')
+ if(token){uploaderOptions.headers['X-CSRF-TOKEN']=token}
+diff --git a/modules/backend/widgets/mediamanager/assets/js/mediamanager.js b/modules/backend/widgets/mediamanager/assets/js/mediamanager.js
+index 4d46f6b382..10f34da36d 100644
+--- a/modules/backend/widgets/mediamanager/assets/js/mediamanager.js
++++ b/modules/backend/widgets/mediamanager/assets/js/mediamanager.js
+@@ -715,6 +715,7 @@
+             clickable: this.$el.find('[data-control="upload"]').get(0),
+             url: this.options.url,
+             paramName: 'file_data',
++            timeout: 0,
+             headers: {},
+             createImageThumbnails: false
+             // fallback: implement method that would set a flag that the uploader is not supported by the browser
+diff --git a/modules/cms/widgets/assetlist/assets/js/assetlist.js b/modules/cms/widgets/assetlist/assets/js/assetlist.js
+index cb070ca991..f430c669c4 100644
+--- a/modules/cms/widgets/assetlist/assets/js/assetlist.js
++++ b/modules/cms/widgets/assetlist/assets/js/assetlist.js
+@@ -150,6 +150,7 @@
+                 paramName: 'file_data',
+                 previewsContainer: $('<div />').get(0),
+                 clickable: $link.get(0),
++                timeout: 0,
+                 headers: {}
+             }
+ 

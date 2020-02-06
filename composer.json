@@ -39,7 +39,8 @@
         "october/backend": "~1.0",
         "october/cms": "~1.0",
         "laravel/framework": "^5.5.40",
-        "wikimedia/composer-merge-plugin": "dev-master"
+        "wikimedia/composer-merge-plugin": "dev-master",
+        "cweagans/composer-patches": "^1.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.7",
@@ -77,6 +78,11 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
+        "patches": {
+            "october/october": {
+                "Fixes Dropzone timeout limit": "patches/c04646691327b7523e2bd05bd4f387eee97ca84f.patch"
+            }
+        },
         "merge-plugin": {
             "include": [
                 "plugins/*/*/composer.json"
