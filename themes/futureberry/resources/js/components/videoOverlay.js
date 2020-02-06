@@ -1,7 +1,9 @@
 export default function () {
     let isTouch = ('ontouchstart' in window) || (navigator.MaxTouchPoints > 0);
+
     let manifest = document.querySelector('#main');
     let video = document.querySelector('#video');
+    let keywords = document.querySelectorAll('.keyword');
 
     if (isTouch) {
         window.addEventListener('click', event => {
@@ -17,7 +19,7 @@ export default function () {
             video.paused ? videoPlay(src) : videoPause();
         });
     } else {
-        document.querySelectorAll('.keyword').forEach(keyword => {
+        keywords.forEach(keyword => {
             keyword.addEventListener('mouseenter', event => {
                 let src = getSrcAttribute(event.target);
 
@@ -33,6 +35,19 @@ export default function () {
             });
         });
     }
+
+    keywords.forEach(keyword => {
+        let label = keyword.querySelector('.keyword__label');
+        let link = keyword.querySelector('.keyword__link');
+
+        if ( ! link) {
+            return;
+        }
+
+        let popper = new Popper(label, link, {
+            placement: 'top',
+        });
+    });
 
     window.addEventListener('scroll', _.debounce(function (event) {
         if ( ! video.paused) {

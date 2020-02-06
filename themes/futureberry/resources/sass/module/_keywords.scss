@@ -50,18 +50,11 @@
         background-color: transparent;
         text-decoration: none;
         border-radius: ($line-height * .5rem);
-
-        position: absolute;
-        right: $gap * .5;
-        z-index: -1;
-        transform: translateX(100%);
-        padding: 0 ($gap / 2);
+        padding: 0 ($gap * .5);
 
         transition:
             color .3s ease-in-out,
-            background-color .3s ease-in-out,
-            right .3s ease-in-out,
-            z-index .3s ease-in-out;
+            background-color .3s ease-in-out;
         transition-delay: .5s;
     }
 
@@ -70,7 +63,6 @@
         a.keyword__link {
             color: white !important;
             background-color: $link;
-            right: 0;
             z-index: 0;
         }
     }

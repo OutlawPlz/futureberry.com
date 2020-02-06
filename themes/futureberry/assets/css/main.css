@@ -607,14 +607,9 @@ svg {
   background-color: transparent;
   text-decoration: none;
   border-radius: 0.65rem;
-  position: absolute;
-  right: 0.65rem;
-  z-index: -1;
-  -webkit-transform: translateX(100%);
-          transform: translateX(100%);
   padding: 0 0.65rem;
-  -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, right 0.3s ease-in-out, z-index 0.3s ease-in-out;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, right 0.3s ease-in-out, z-index 0.3s ease-in-out;
+  -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   -webkit-transition-delay: 0.5s;
           transition-delay: 0.5s;
 }
@@ -622,7 +617,6 @@ svg {
 .keyword.active a.keyword__link {
   color: white !important;
   background-color: #5995fb;
-  right: 0;
   z-index: 0;
 }
 
