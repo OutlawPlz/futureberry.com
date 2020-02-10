@@ -2,12 +2,15 @@
     padding: $gap 0;
 }
 
-#main {
-    p {
-        margin: 0;
-    }
+.page-index {
 
-    p:nth-child(odd) {
-        color: $futureberry;
+    .row-main {
+        p {
+            margin: 0;
+        }
+
+        p:nth-child(odd) {
+            color: $futureberry;
+        }
     }
 }

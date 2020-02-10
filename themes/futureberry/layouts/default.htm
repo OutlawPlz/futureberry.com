@@ -5,7 +5,7 @@ useContent = 1
 default = 0
 ==
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
 
@@ -20,11 +20,16 @@ default = 0
     <link rel="stylesheet" href="{{ 'assets/css/main.css'|theme }}">
 </head>
 <body>
-<div id="app" class="layout-default">
+<div id="app" class="layout layout-{{ this.layout.id }} page page-{{ this.page.id }}">
     <div class="wrapper wrapper-header">
         <div class="row row-header">
             {% partial 'site/header' %}
         </div>
+        {% if placeholder('leaderboard') %}
+            <div class="row row-leaderboard">
+                {% placeholder leaderboard %}
+            </div>
+        {% endif %}
     </div>
 
     <div class="wrapper wrapper-main">

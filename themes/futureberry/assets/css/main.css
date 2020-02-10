@@ -518,6 +518,10 @@ svg {
           animation-iteration-count: infinite;
 }
 
+#logo {
+  display: none;
+}
+
 .layout-default {
   display: -webkit-box;
   display: flex;
@@ -538,15 +542,19 @@ svg {
           flex-grow: 1;
 }
 
+.row-leaderboard {
+  margin: 3.9rem;
+}
+
 .wrapper-main {
   padding: 1.3rem 0;
 }
 
-#main p {
+.page-index .row-main p {
   margin: 0;
 }
 
-#main p:nth-child(odd) {
+.page-index .row-main p:nth-child(odd) {
   color: #f15024;
 }
 
@@ -571,6 +579,17 @@ svg {
 .block-our-homes .block__title {
   font-size: 1.5rem;
   text-transform: uppercase;
+}
+
+.form-contact input {
+  border: none;
+  border-bottom: 2px solid #b9b1be;
+}
+
+.form-contact textarea {
+  width: 100%;
+  border: none;
+  background: repeating-linear-gradient(white, white 25.6px, #b9b1be 25.6px, #b9b1be 27.6px);
 }
 
 #main {
@@ -636,6 +655,15 @@ svg {
 
 #video.shown {
   opacity: 1;
+}
+
+.page-contact .wrapper-header {
+  color: white;
+  background-color: #ca4323;
+}
+
+.page-contact .wrapper-main .container {
+  max-width: 62rem;
 }
 
 @media (min-width: 48rem){

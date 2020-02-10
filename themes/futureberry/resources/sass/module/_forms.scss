@@ -1,0 +1,21 @@
+.form-contact {
+
+    input {
+        border: none;
+        border-bottom: 2px solid $gray;
+    }
+
+    select {}
+
+    textarea {
+        width: 100%;
+        border: none;
+
+        background: repeating-linear-gradient(
+            white,
+            white 25.6px,
+            $gray 25.6px,
+            $gray 27.6px
+        );
+    }
+}
