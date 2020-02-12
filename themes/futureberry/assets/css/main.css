@@ -585,12 +585,13 @@ svg {
 .form-contact input {
   border: none;
   border-bottom: 2px solid #b9b1be;
+  background-color: #faf8ec;
 }
 
 .form-contact textarea {
   width: 100%;
   border: none;
-  background: repeating-linear-gradient(white, white 25.6px, #b9b1be 25.6px, #b9b1be 27.6px);
+  background: repeating-linear-gradient(#faf8ec, #faf8ec 25.6px, #b9b1be 25.6px, #b9b1be 27.6px);
 }
 
 #main {
