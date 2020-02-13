@@ -22,7 +22,10 @@ set('release_name', function () {
 
 // Shared files/dirs between deploys
 add('shared_files', []);
-add('shared_dirs', []);
+add('shared_dirs', [
+    'themes/futureberry/content',
+    'themes/futureberry/meta',
+]);
 
 // Writable dirs by web server
 add('writable_dirs', ['themes']);
