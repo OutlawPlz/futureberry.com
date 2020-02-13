@@ -1,8 +1,6 @@
 (function ($) {
     const FroalaEditor = $.FroalaEditor;
 
-    $.oc.richEditorButtons.splice(3, 0, 'keyword');
-
     Object.assign(FroalaEditor.POPUP_TEMPLATES, {
         'futureberry.popup': '[_BUTTONS_][_CUSTOM_LAYER_]'
     });
@@ -24,27 +22,27 @@
                     `<div id="fr-futureberry-hotword-layer" class="fr-layer fr-active">
                         <div class="fr-input-line">
                             <input id="fr-hotword-label-input" type="text" name="label"
-                                   class="fr-keyword-attr" placeholder="Label" tabindex="1" dir="auto">
+                                   class="fr-hotword-attr" placeholder="Label" tabindex="1" dir="auto">
                         </div>
                         <div class="fr-input-line">
                             <input id="fr-hotword-video-url-input" type="text" name="video_url"
-                                   class="fr-keyword-attr" placeholder="Video URL" tabindex="1" dir="auto">
+                                   class="fr-hotword-attr" placeholder="Video URL" tabindex="1" dir="auto">
                         </div>
                         <div class="fr-action-buttons">
-                            <button class="fr-command fr-submit" role="button" data-cmd="keywordInsert" href="#" tabindex="4" type="button">Insert</button>
+                            <button class="fr-command fr-submit" role="button" data-cmd="hotwordInsert" href="#" tabindex="4" type="button">Insert</button>
                         </div>
                     </div>
                     <div id="fr-futureberry-link-layer" class="fr-layer">
                         <div class="fr-input-line">
                             <input id="fr-hotword-link-label-input" type="text" name="link_label"
-                                   class="fr-keyword-attr" placeholder="Link label" tabindex="1" dir="auto">
+                                   class="fr-hotword-attr" placeholder="Link label" tabindex="1" dir="auto">
                         </div>
                         <div class="fr-input-line">
                             <input id="fr-hotword-link-url-input" type="text" name="link_url"
-                                   class="fr-keyword-attr" placeholder="Link URL" tabindex="1" dir="auto">
+                                   class="fr-hotword-attr" placeholder="Link URL" tabindex="1" dir="auto">
                         </div>
                         <div class="fr-action-buttons">
-                            <button class="fr-command fr-submit" role="button" data-cmd="keywordInsert" href="#" tabindex="4" type="button">Insert</button>
+                            <button class="fr-command fr-submit" role="button" data-cmd="hotwordInsert" href="#" tabindex="4" type="button">Insert</button>
                         </div>
                     </div>`
             };
@@ -63,7 +61,7 @@
 
             editor.popups.setContainer('futureberry.popup', editor.$tb);
 
-            let $btn = editor.$tb.find('.fr-command[data-cmd="keyword"]');
+            let $btn = editor.$tb.find('.fr-command[data-cmd="hotword"]');
 
             let left = $btn.offset().left + $btn.outerWidth() / 2;
             let top = $btn.offset().top + (editor.opts.toolbarBottom ? 10 : $btn.outerHeight() - 10);
@@ -97,12 +95,12 @@
             let popup = editor.popups.get('futureberry.popup')[0];
             let element = editor.selection.element().parentElement;
 
-            if ( ! element.classList.contains('keyword')) {
+            if ( ! element.classList.contains('hotword')) {
                 return (popup.querySelector('#fr-hotword-label-input').value = editor.selection.text());
             }
 
-            let label = element.querySelector('.keyword__label');
-            let link = element.querySelector('.keyword__link');
+            let label = element.querySelector('.hotword__label');
+            let link = element.querySelector('.hotword__link');
 
             popup.querySelector('#fr-hotword-label-input').value = label.innerText;
             popup.querySelector('#fr-hotword-video-url-input').value = element.dataset.video_url;
@@ -131,9 +129,9 @@
         }
     };
 
-    FroalaEditor.DefineIcon('buttonIcon', { NAME: 'asterisk'});
-    FroalaEditor.RegisterCommand('keyword', {
-        title: 'Show Popup',
+    FroalaEditor.DefineIcon('buttonIcon', { NAME: 'asterisk' });
+    FroalaEditor.RegisterCommand('hotword', {
+        title: 'Futureberry HOTWORD',
         icon: 'buttonIcon',
         plugin: 'futureberry',
         undo: false,
@@ -194,7 +192,7 @@
         }
     });
 
-    FroalaEditor.RegisterCommand('keywordInsert', {
+    FroalaEditor.RegisterCommand('hotwordInsert', {
         title: 'Insert',
         focus: true,
         undo: true,
@@ -203,13 +201,15 @@
         callback: function () {
             let values = this.futureberry.getHotwordValues();
             let element = this.selection.element().parentElement;
-            let link = element.querySelector('.keyword__link');
+            let link = element.querySelector('.hotword__link');
 
-            if ( ! values.label || ! values.videoUrl) return this.popups.hide('futureberry.popup');
+            if ( ! values.label || ! values.videoUrl) {
+                return this.popups.hide('futureberry.popup');
+            }
 
-            let hotword = `<span class="keyword" data-video_url="${values.videoUrl}"><span class="keyword__label">${values.label}</span><a href="${values.linkUrl}" class="keyword__link">${values.linkLabel}</a></span>`;
+            let hotword = `<span class="hotword" data-video_url="${values.videoUrl}"><span class="hotword__label">${values.label}</span><a href="${values.linkUrl}" class="hotword__link">${values.linkLabel}</a></span>`;
 
-            if ( ! element.classList.contains('keyword')) {
+            if ( ! element.classList.contains('hotword')) {
                 this.html.insert(hotword);
 
                 return this.popups.hide('futureberry.popup');
@@ -224,7 +224,9 @@
             element.dataset.video_url = values.videoUrl;
             element.firstElementChild.innerText = values.label;
 
-            if (link) element.removeChild(link);
+            if (link) {
+                element.removeChild(link);
+            }
 
             return this.popups.hide('futureberry.popup');
         }

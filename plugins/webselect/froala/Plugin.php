@@ -43,6 +43,7 @@ class Plugin extends PluginBase
     {
         RichEditor::extend(function (RichEditor $widget) {
             $widget->addJs('/plugins/webselect/froala/assets/js/line_height.plugin.js');
+            $widget->addJs('/plugins/webselect/froala/assets/js/futureberry.plugin.js');
         });
     }
 
