@@ -48,6 +48,10 @@
     }
 }
 
-.hidden:not(.hotword--active) { // when main content is hidden
+.hidden { // when main content is hidden
     color: transparent;
+
+    .hotword:not(.hotword--active) {
+        color: transparent;
+    }
 }

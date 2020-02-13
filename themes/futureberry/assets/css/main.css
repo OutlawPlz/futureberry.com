@@ -634,7 +634,11 @@ svg {
   color: #faf7eb;
 }
 
-.hidden:not(.hotword--active) {
+.hidden {
+  color: transparent;
+}
+
+.hidden .hotword:not(.hotword--active) {
   color: transparent;
 }
 
