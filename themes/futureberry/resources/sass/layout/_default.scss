@@ -7,7 +7,22 @@
     flex-direction: column;
     min-height: 100vh;
 
+    .wrapper-header {
+        margin-top: 1.5 * $line + (2 * $space-xs); // logo height
+
+        .row-header {
+            position: fixed; // sticky header
+            top: 0;
+            transform: translateY(0);
+            transition: transform .3s ease-in-out;
+
+            &--hidden {
+                transform: translateY(-100%);
+            }
+        }
+    }
+
     .wrapper-main {
-        flex-grow: 1; // Sticky footer
+        flex-grow: 1; // sticky footer
     }
 }

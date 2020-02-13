@@ -44,3 +44,14 @@
         max-width: $fluid;
     }
 }
+
+#footer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: $space-xs;
+
+    @include breakpoint($lg) {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: $space-lg;
+    }
+}

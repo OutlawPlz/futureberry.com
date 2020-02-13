@@ -25,5 +25,7 @@ try {
  */
 
 import hotword from './components/hotword';
+import stickyHeader from "./components/stickyHeader";
 
+stickyHeader();
 hotword();

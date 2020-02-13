@@ -542,6 +542,26 @@ svg {
   min-height: 100vh;
 }
 
+.layout-default .wrapper-header {
+  margin-top: 4.0596em;
+}
+
+.layout-default .wrapper-header .row-header {
+  position: fixed;
+  top: 0;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+
+.layout-default .wrapper-header .row-header--hidden {
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+
 .layout-default .wrapper-main {
   -webkit-box-flex: 1;
           flex-grow: 1;
@@ -574,6 +594,12 @@ svg {
 
 .wrapper-footer .container {
   max-width: 100%;
+}
+
+#footer {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 0.7548em;
 }
 
 #logo {
@@ -613,6 +639,12 @@ svg {
   position: relative;
 }
 
+.hotword__label {
+  font-weight: 700;
+  background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 15%, transparent 15%, transparent 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 65%, transparent 65%, transparent 100%);
+  background-size: 10px 10px;
+}
+
 .hotword__link {
   background-color: transparent;
   color: transparent;
@@ -620,8 +652,8 @@ svg {
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-transform: translate(-70%, -70%);
-          transform: translate(-70%, -70%);
+  -webkit-transform: translate(-90%, -60%);
+          transform: translate(-90%, -60%);
   padding: 0 0.5032em;
   -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -649,6 +681,10 @@ svg {
   opacity: 1;
 }
 
+.hotword--active .hotword__label {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
 .hotword--active .hotword__link {
   background-color: #259eb6;
   color: #faf7eb;
@@ -669,6 +705,13 @@ svg {
 @media (min-width: 48rem){
   .container {
     padding: 0 3.825em;
+  }
+}
+
+@media (min-width: 62rem){
+  #footer {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2.55em;
   }
 }
 

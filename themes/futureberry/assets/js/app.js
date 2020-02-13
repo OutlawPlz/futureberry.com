@@ -31265,6 +31265,7 @@ module.exports = function(module) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_hotword__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/hotword */ "./resources/js/components/hotword.js");
+/* harmony import */ var _components_stickyHeader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/stickyHeader */ "./resources/js/components/stickyHeader.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /*
  | ----------------------------------------------------------------------
@@ -31289,6 +31290,8 @@ try {
 
 
 
+
+Object(_components_stickyHeader__WEBPACK_IMPORTED_MODULE_1__["default"])();
 Object(_components_hotword__WEBPACK_IMPORTED_MODULE_0__["default"])();
 
 /***/ }),
@@ -31413,6 +31416,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     return src;
   }
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/stickyHeader.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/stickyHeader.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var header = document.querySelector('.row-header');
+  var prevScroll = window.scrollY;
+  document.addEventListener('scroll', _.throttle(function (event) {
+    if (prevScroll > window.scrollY) {
+      // scroll up
+      header.classList.remove('row-header--hidden');
+    }
+
+    if (prevScroll < window.scrollY) {
+      // scroll down
+      header.classList.add('row-header--hidden');
+    }
+
+    prevScroll = window.scrollY;
+  }, 300));
 });
 
 /***/ }),
