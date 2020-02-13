@@ -7,11 +7,11 @@
 //    }
 //
 //    &.hidden {
-//        p, ul, a, .keyword {
+//        p, ul, a, .hotword {
 //            color: transparent;
 //        }
 //
-//        .keyword:hover {
+//        .hotword:hover {
 //            color: $accent !important;
 //        }
 //    }
@@ -22,7 +22,7 @@
     color: $text;
     transition: color .3s ease-in-out;
 
-    .keyword {
+    .hotword {
         color: $accent;
     }
 
@@ -31,7 +31,7 @@
             color: transparent;
         }
 
-        .keyword {
+        .hotword {
             color: transparent;
 
             &.active {
@@ -41,7 +41,7 @@
     }
 }
 
-.keyword {
+.hotword {
    bgtion: relative;
     padding: 0 $space-xs;
 
@@ -60,7 +60,7 @@
 
     &.active {
 
-        a.keyword__link {
+        a.hotword__link {
             color: $bg !important;
             background-color: $accent;
             z-index: 0;

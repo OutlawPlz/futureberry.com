@@ -31264,7 +31264,7 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_videoOverlay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/videoOverlay */ "./resources/js/components/videoOverlay.js");
+/* harmony import */ var _components_hotword__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/hotword */ "./resources/js/components/hotword.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /*
  | ----------------------------------------------------------------------
@@ -31289,14 +31289,14 @@ try {
 
 
 
-Object(_components_videoOverlay__WEBPACK_IMPORTED_MODULE_0__["default"])();
+Object(_components_hotword__WEBPACK_IMPORTED_MODULE_0__["default"])();
 
 /***/ }),
 
-/***/ "./resources/js/components/videoOverlay.js":
-/*!*************************************************!*\
-  !*** ./resources/js/components/videoOverlay.js ***!
-  \*************************************************/
+/***/ "./resources/js/components/hotword.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/hotword.js ***!
+  \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -31314,11 +31314,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   var isTouch = 'ontouchstart' in window || navigator.MaxTouchPoints > 0;
   var manifest = document.querySelector('#main');
   var video = document.querySelector('#video');
-  var keywords = document.querySelectorAll('.keyword');
+  var hotwords = document.querySelectorAll('.hotword');
 
   if (isTouch) {
     window.addEventListener('click', function (event) {
-      var isHotword = event.target.classList.contains('keyword') || event.target.classList.contains('keyword__label');
+      var isHotword = event.target.classList.contains('hotword') || event.target.classList.contains('hotword__label');
       var src = getSrcAttribute(event.target);
 
       if (!isHotword) {
@@ -31328,21 +31328,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       video.paused ? videoPlay(src) : videoPause();
     });
   } else {
-    keywords.forEach(function (keyword) {
-      keyword.addEventListener('mouseenter', function (event) {
+    hotwords.forEach(function (hotword) {
+      hotword.addEventListener('mouseenter', function (event) {
         var src = getSrcAttribute(event.target);
         videoPlay(src);
       });
-      keyword.addEventListener('mouseout', function (event) {
-        if (event.relatedTarget.classList.contains('keyword') || event.relatedTarget.classList.contains('keyword__link') || event.relatedTarget.classList.contains('keyword__label')) return;
+      hotword.addEventListener('mouseout', function (event) {
+        if (event.relatedTarget.classList.contains('hotword') || event.relatedTarget.classList.contains('hotword__link') || event.relatedTarget.classList.contains('hotword__label')) return;
         videoPause();
       });
     });
   }
 
-  keywords.forEach(function (keyword) {
-    var label = keyword.querySelector('.keyword__label');
-    var link = keyword.querySelector('.keyword__link');
+  hotwords.forEach(function (hotword) {
+    var label = hotword.querySelector('.hotword__label');
+    var link = hotword.querySelector('.hotword__link');
 
     if (!link) {
       return;
@@ -31403,11 +31403,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   function getSrcAttribute(element) {
     var src = '';
 
-    if (element.classList.contains('keyword')) {
+    if (element.classList.contains('hotword')) {
       src = element.dataset.video_url;
     }
 
-    if (element.parentElement.classList.contains('keyword')) {
+    if (element.parentElement.classList.contains('hotword')) {
       src = element.parentElement.dataset.video_url;
     }
 

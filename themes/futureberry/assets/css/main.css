@@ -569,7 +569,7 @@ svg {
   transition: color 0.3s ease-in-out;
 }
 
-#main .keyword {
+#main .hotword {
   color: #259eb6;
 }
 
@@ -579,20 +579,20 @@ svg {
   color: transparent;
 }
 
-#main.hidden .keyword {
+#main.hidden .hotword {
   color: transparent;
 }
 
-#main.hidden .keyword.active {
+#main.hidden .hotword.active {
   color: #259eb6;
 }
 
-.keyword {
+.hotword {
   bgtion: relative;
   padding: 0 0.7548em;
 }
 
-.keyword__link {
+.hotword__link {
   color: transparent;
   background-color: transparent;
   text-decoration: none;
@@ -604,7 +604,7 @@ svg {
           transition-delay: 0.5s;
 }
 
-.keyword.active a.keyword__link {
+.hotword.active a.hotword__link {
   color: #faf7eb !important;
   background-color: #259eb6;
   z-index: 0;

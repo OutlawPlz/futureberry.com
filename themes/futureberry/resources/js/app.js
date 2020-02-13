@@ -24,6 +24,6 @@ try {
  | ----------------------------------------------------------------------
  */
 
-import videoOverlay from './components/videoOverlay';
+import hotword from './components/hotword';
 
-videoOverlay();
+hotword();

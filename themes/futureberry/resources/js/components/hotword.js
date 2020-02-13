@@ -3,12 +3,12 @@ export default function () {
 
     let manifest = document.querySelector('#main');
     let video = document.querySelector('#video');
-    let keywords = document.querySelectorAll('.keyword');
+    let hotwords = document.querySelectorAll('.hotword');
 
     if (isTouch) {
         window.addEventListener('click', event => {
-            let isHotword = event.target.classList.contains('keyword') ||
-                event.target.classList.contains('keyword__label');
+            let isHotword = event.target.classList.contains('hotword') ||
+                event.target.classList.contains('hotword__label');
 
             let src = getSrcAttribute(event.target);
 
@@ -19,26 +19,26 @@ export default function () {
             video.paused ? videoPlay(src) : videoPause();
         });
     } else {
-        keywords.forEach(keyword => {
-            keyword.addEventListener('mouseenter', event => {
+        hotwords.forEach(hotword => {
+            hotword.addEventListener('mouseenter', event => {
                 let src = getSrcAttribute(event.target);
 
                 videoPlay(src);
             });
 
-            keyword.addEventListener('mouseout', event => {
-                if (event.relatedTarget.classList.contains('keyword') ||
-                    event.relatedTarget.classList.contains('keyword__link') ||
-                    event.relatedTarget.classList.contains('keyword__label')) return;
+            hotword.addEventListener('mouseout', event => {
+                if (event.relatedTarget.classList.contains('hotword') ||
+                    event.relatedTarget.classList.contains('hotword__link') ||
+                    event.relatedTarget.classList.contains('hotword__label')) return;
 
                 videoPause();
             });
         });
     }
 
-    keywords.forEach(keyword => {
-        let label = keyword.querySelector('.keyword__label');
-        let link = keyword.querySelector('.keyword__link');
+    hotwords.forEach(hotword => {
+        let label = hotword.querySelector('.hotword__label');
+        let link = hotword.querySelector('.hotword__link');
 
         if ( ! link) {
             return;
@@ -84,11 +84,11 @@ export default function () {
     {
         let src = '';
 
-        if (element.classList.contains('keyword')) {
+        if (element.classList.contains('hotword')) {
             src = element.dataset.video_url;
         }
 
-        if (element.parentElement.classList.contains('keyword')) {
+        if (element.parentElement.classList.contains('hotword')) {
             src = element.parentElement.dataset.video_url;
         }
 
