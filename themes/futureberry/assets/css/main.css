@@ -509,6 +509,26 @@ svg {
   }
 }
 
+@-webkit-keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 #38bcd6;
+  }
+
+  100% {
+    box-shadow: 0 0 0 13px transparent;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 #38bcd6;
+  }
+
+  100% {
+    box-shadow: 0 0 0 13px transparent;
+  }
+}
+
 /* --------------------------------------------------------------------------
  /  Default layout
  / -------------------------------------------------------------------------- */
@@ -632,6 +652,10 @@ svg {
 .hotword--active .hotword__link {
   background-color: #259eb6;
   color: #faf7eb;
+  -webkit-animation: pulse 2s infinite;
+          animation: pulse 2s infinite;
+  -webkit-animation-delay: 0.75s;
+          animation-delay: 0.75s;
 }
 
 .hidden {
