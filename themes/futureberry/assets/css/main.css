@@ -652,11 +652,12 @@ svg {
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-transform: translate(-90%, -60%);
-          transform: translate(-90%, -60%);
+  z-index: -1;
+  -webkit-transform: translate(-80%, -80%);
+          transform: translate(-80%, -80%);
   padding: 0 0.5032em;
-  -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, z-index 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, z-index 0.3s ease-in-out;
   -webkit-transition-delay: 0.75s;
           transition-delay: 0.75s;
   text-decoration: none;
@@ -688,6 +689,7 @@ svg {
 .hotword--active .hotword__link {
   background-color: #259eb6;
   color: #faf7eb;
+  z-index: 1;
   -webkit-animation: pulse 2s infinite;
           animation: pulse 2s infinite;
   -webkit-animation-delay: 0.75s;

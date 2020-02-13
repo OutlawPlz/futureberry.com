@@ -27,12 +27,13 @@
         border-radius: ($body-line-height * .5em); // make it round
         position: absolute;
         top: 0; left: 0;
-        //z-index: -1;
-        transform: translate(-90%, -60%);
+        z-index: -1;
+        transform: translate(-80%, -80%);
         padding: 0 $space-xxs;
         transition:
             color .3s ease-in-out,
-            background-color .3s ease-in-out;
+            background-color .3s ease-in-out,
+            z-index .3s ease-in-out;
         transition-delay: .75s;
 
         text-decoration: none; // hide link style
@@ -63,7 +64,7 @@
     .hotword__link {
         background-color: $accent;
         color: $bg;
-        //z-index: 1;
+        z-index: 1;
         animation: pulse 2s infinite;
         animation-delay: .75s;
     }
