@@ -1,19 +1,13 @@
+/* --------------------------------------------------------------------------
+ /  Default layout
+ / -------------------------------------------------------------------------- */
+
 .layout-default {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
 
-.container {
-    max-width: $container;
-    margin: 0 auto;
-    padding: 0 $space-md;
-
-    @include breakpoint($md) {
-        padding: 0 $space-xl;
+    .wrapper-main {
+        flex-grow: 1; // Sticky footer
     }
-}
-
-.wrapper-main {
-    flex-grow: 1;
 }

@@ -31313,7 +31313,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var isTouch = 'ontouchstart' in window || navigator.MaxTouchPoints > 0;
   var manifest = document.querySelector('#main');
-  var video = document.querySelector('#video');
+  var video = document.querySelector('.hotword__video');
   var hotwords = document.querySelectorAll('.hotword');
 
   if (isTouch) {
@@ -31338,20 +31338,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         videoPause();
       });
     });
-  }
+  } // hotwords.forEach(hotword => {
+  //     let label = hotword.querySelector('.hotword__label');
+  //     let link = hotword.querySelector('.hotword__link');
+  //
+  //     if ( ! link) {
+  //         return;
+  //     }
+  //
+  //     let popper = new Popper(label, link, {
+  //         placement: 'top',
+  //     });
+  // });
 
-  hotwords.forEach(function (hotword) {
-    var label = hotword.querySelector('.hotword__label');
-    var link = hotword.querySelector('.hotword__link');
 
-    if (!link) {
-      return;
-    }
-
-    var popper = new Popper(label, link, {
-      placement: 'top'
-    });
-  });
   window.addEventListener('scroll', _.debounce(function (event) {
     if (!video.paused) {
       videoPause();
@@ -31377,9 +31377,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             case 3:
               hotword = document.querySelector("span[data-video_url=\"".concat(src, "\"]"));
-              hotword.classList.add('active');
+              hotword.classList.add('hotword--active');
               manifest.classList.add('hidden');
-              video.classList.add('shown');
+              video.classList.add('hotword__video--shown');
 
             case 7:
             case "end":
@@ -31395,9 +31395,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var src = video.src;
     video.pause();
     var hotword = document.querySelector("span[data-video_url=\"".concat(src, "\"]"));
-    hotword.classList.remove('active');
+    hotword.classList.remove('hotword--active');
     manifest.classList.remove('hidden');
-    video.classList.remove('shown');
+    video.classList.remove('hotword__video--shown');
   }
 
   function getSrcAttribute(element) {

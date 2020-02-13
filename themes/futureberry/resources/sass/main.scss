@@ -8,12 +8,10 @@
 @import "layout/default";
 
 // ----- Module -----
-@import "module/main";
-@import "module/header";
-@import "module/footer";
+@import "module/wrappers";
+@import "module/logo";
 @import "module/blocks";
 @import "module/forms";
 @import "module/hotword";
 
 // ----- Pages -----
-//@import "page/contact";

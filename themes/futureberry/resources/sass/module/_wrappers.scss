@@ -1,0 +1,46 @@
+/* --------------------------------------------------------------------------
+ /  Wrapper, Row and Container
+ / -------------------------------------------------------------------------- */
+
+.wrapper {}
+
+.row {}
+
+.container {
+    max-width: $container;
+    margin: 0 auto;
+    padding: 0 $space-md;
+
+    @include breakpoint($md) {
+        padding: 0 $space-xl;
+    }
+}
+
+// ----- Header -----
+
+.wrapper-header {
+    .container {
+        max-width: $fluid;
+        padding: 0 $space-md;
+    }
+}
+
+// ----- Main -----
+
+.wrapper-main {
+    .container {
+        max-width: $md;
+    }
+}
+
+// ----- Footer -----
+
+.wrapper-footer {
+    background-color: $light;
+    color: $bg;
+    padding: $space-md 0;
+
+    .container {
+        max-width: $fluid;
+    }
+}

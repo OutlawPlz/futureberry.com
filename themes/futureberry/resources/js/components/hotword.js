@@ -2,7 +2,7 @@ export default function () {
     let isTouch = ('ontouchstart' in window) || (navigator.MaxTouchPoints > 0);
 
     let manifest = document.querySelector('#main');
-    let video = document.querySelector('#video');
+    let video = document.querySelector('.hotword__video');
     let hotwords = document.querySelectorAll('.hotword');
 
     if (isTouch) {
@@ -36,18 +36,18 @@ export default function () {
         });
     }
 
-    hotwords.forEach(hotword => {
-        let label = hotword.querySelector('.hotword__label');
-        let link = hotword.querySelector('.hotword__link');
-
-        if ( ! link) {
-            return;
-        }
-
-        let popper = new Popper(label, link, {
-            placement: 'top',
-        });
-    });
+    // hotwords.forEach(hotword => {
+    //     let label = hotword.querySelector('.hotword__label');
+    //     let link = hotword.querySelector('.hotword__link');
+    //
+    //     if ( ! link) {
+    //         return;
+    //     }
+    //
+    //     let popper = new Popper(label, link, {
+    //         placement: 'top',
+    //     });
+    // });
 
     window.addEventListener('scroll', _.debounce(function (event) {
         if ( ! video.paused) {
@@ -63,9 +63,9 @@ export default function () {
 
         let hotword = document.querySelector(`span[data-video_url="${src}"]`);
 
-        hotword.classList.add('active');
+        hotword.classList.add('hotword--active');
         manifest.classList.add('hidden');
-        video.classList.add('shown');
+        video.classList.add('hotword__video--shown');
     }
 
     function videoPause()
@@ -75,9 +75,9 @@ export default function () {
 
         let hotword = document.querySelector(`span[data-video_url="${src}"]`);
 
-        hotword.classList.remove('active');
+        hotword.classList.remove('hotword--active');
         manifest.classList.remove('hidden');
-        video.classList.remove('shown');
+        video.classList.remove('hotword__video--shown');
     }
 
     function getSrcAttribute(element)

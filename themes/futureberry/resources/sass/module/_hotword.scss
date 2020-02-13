@@ -1,84 +1,53 @@
-//.row-main {
-//    color: $text;
-//    transition: color .3s ease-in-out;
-//
-//    &.hidden p {
-//        color: transparent !important;
-//    }
-//
-//    &.hidden {
-//        p, ul, a, .hotword {
-//            color: transparent;
-//        }
-//
-//        .hotword:hover {
-//            color: $accent !important;
-//        }
-//    }
-//
-//}
-
-#main {
-    color: $text;
-    transition: color .3s ease-in-out;
-
-    .hotword {
-        color: $accent;
-    }
-
-    &.hidden {
-        p, ul, a {
-            color: transparent;
-        }
-
-        .hotword {
-            color: transparent;
-
-            &.active {
-                color: $accent;
-            }
-        }
-    }
-}
+/* --------------------------------------------------------------------------
+ /  Hotword
+ / -------------------------------------------------------------------------- */
 
 .hotword {
-   bgtion: relative;
-    padding: 0 $space-xs;
+    color: $accent;
+    position: relative;
 
+    &__label {}
     &__link {
-        color: transparent;
         background-color: transparent;
-        text-decoration: none;
-        border-radius: ($body-line-height * .5rem);
-        padding: 0 $space-sm;
-
+        color: transparent;
+        border-radius: ($body-line-height * .5em); // make it round
+        position: absolute;
+        top: 0; left: 0;
+        transform: translate(-70%, -70%);
+        padding: 0 $space-xxs;
         transition:
             color .3s ease-in-out,
             background-color .3s ease-in-out;
-        transition-delay: .5s;
+        transition-delay: .75s;
+
+        text-decoration: none; // hide link style
+        font-weight: 700;
     }
 
-    &.active {
+    &__video {
+        position: fixed;
+        top: 0; left: 0;
+        z-index: -1;
+        width: 100vw; height: 100vh;
+        opacity: 0;
+        object-fit: cover;
+        transition: opacity .3s ease-in-out;
 
-        a.hotword__link {
-            color: $bg !important;
-            background-color: $accent;
-            z-index: 0;
+        &--shown {
+            opacity: 1;
         }
     }
 }
 
-#video {
-    position: fixed;
-    top: 0; left: 0;
-    z-index: -1;
-    width: 100vw; height: 100vh;
-    object-fit: cover;
-    opacity: 0;
+.hotword--active {
 
-    transition: opacity .3s ease-in-out;
-
-    &.shown {
-        opacity: 1;
+    .hotword__label {}
+    .hotword__link {
+        background-color: $accent;
+        color: $bg;
     }
+}
+
+.hidden:not(.hotword--active) { // when main content is hidden
+    color: transparent;
 }
