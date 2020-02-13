@@ -2,28 +2,28 @@
 
 html {
     font-size: 100%;
-    line-height: $line-height;
+    line-height: $body-line-height;
 }
 
 body {
+    background-color: $bg;
+    font-size: $text-base-size;
+    font-family: $font-primary;
     color: $text;
-    font-family: $sans-serif;
-    font-size: $font-size;
-
-    background-color: #faf8ec;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    line-height: $line-height * .75;
-    margin: $gap 0;
+h1, h2, h3, h4 {
+    font-family: $font-primary;
+    font-weight: 700;
+    margin: $space-sm 0;
 }
 
 p {
-    margin: $gap 0;
+    margin: $space-md 0;
 }
 
 a {
-    color: $link;
+    color: $accent;
     text-decoration: underline 2px;
 
     &:hover,
@@ -31,6 +31,11 @@ a {
     &:focus {
         text-decoration: none;
     }
+}
+
+ul {
+    margin: $space-md 0;
+    padding-left: $space-md;
 }
 
 svg {

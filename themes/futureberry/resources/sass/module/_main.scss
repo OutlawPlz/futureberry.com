@@ -1,16 +1,3 @@
 .wrapper-main {
-    padding: $gap 0;
-}
-
-.page-index {
-
-    .row-main {
-        p {
-            margin: 0;
-        }
-
-        p:nth-child(odd) {
-            color: $futureberry;
-        }
-    }
+    padding: $space-md 0;
 }

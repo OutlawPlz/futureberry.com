@@ -1,12 +1,96 @@
-// ----- Fonts -----
+@use "sass:color";
 
-$font-size: 1.5rem; // .75rem: 12px | .875rem: 14px | 1rem: 16px | 1.125rem: 18px
-$line-height: 1.3;
+// --------------------------------------------------------------------------
+//  Typography
+// --------------------------------------------------------------------------
 
-$sans-serif: Montserrat, sans-serif;
-$serif: serif;
-$monospace: Inconsolata, Consolas, monospace;
+// font family
+$font-primary: Montserrat, sans-serif;
 
+// body font size
+$text-base-size: 1.5em; // .75rem: 12px | .875rem: 14px | 1rem: 16px | 1.125rem: 18px
+$text-scale-ratio: 1.2;
+
+// type scale
+$text-xs: 1em / $text-scale-ratio / $text-scale-ratio;
+$text-sm: $text-xs * $text-scale-ratio;
+$text-md: $text-sm * $text-scale-ratio * $text-scale-ratio;
+$text-lg: $text-md * $text-scale-ratio;
+$text-xl: $text-lg * $text-scale-ratio;
+$text-xxl: $text-xl * $text-scale-ratio;
+$text-xxxl: $text-xxl * $text-scale-ratio;
+
+// line-height
+$body-line-height: 1.7;
+$heading-line-height: 1.3;
+
+// capital letters - used in combo with the lhCrop mixin
+//$font-primary-capital-letter: 1;
+
+// --------------------------------------------------------------------------
+//  Spacing
+// --------------------------------------------------------------------------
+
+// base space unit
+$space-unit: ($body-line-height * 1em);
+
+$space-xxxxs: 0.133 * $space-unit;
+$space-xxxs: 0.2 * $space-unit;
+$space-xxs: 0.296 * $space-unit;
+$space-xs: 0.444 * $space-unit;
+
+$space-sm: 0.667 * $space-unit;
+$space-md: 1 * $space-unit;
+$space-lg: 1.5 * $space-unit;
+
+$space-xl: 2.25 * $space-unit;
+$space-xxl: 3.375 * $space-unit;
+$space-xxxl: 5.063 * $space-unit;
+$space-xxxxl: 7.59 * $space-unit;
+
+// padding
+$component-padding: $space-md;
+
+// --------------------------------------------------------------------------
+//  Colors
+// --------------------------------------------------------------------------
+
+$bg: hsl(48, 60%, 95%);
+$lighter: hsl(51, 29%, 91%);
+$light: hsl(49, 12%, 82%);
+$dark: hsl(120, 0%, 55%);
+$darker: hsl(223, 4%, 32%);
+$text: hsl(222, 8%, 25%);
+
+$primary-lighter: hsl(13, 88%, 74%);
+$primary-light: hsl(13, 88%, 64%);
+$primary: hsl(13, 88%, 54%);
+$primary-dark: hsl(13, 88%, 44%);
+$primary-darker: hsl(13, 88%, 34%);
+
+$accent-lighter: hsl(190, 66%, 63%);
+$accent-light: hsl(190, 66%, 53%);
+$accent: hsl(190, 66%, 43%);
+$accent-dark: hsl(190, 66%, 33%);
+$accent-darker: hsl(190, 66%, 23%);
+
+$danger-lighter: hsl(344, 95%, 74%);
+$danger-light: hsl(344, 95%, 64%);
+$danger: hsl(344, 95%, 53%);
+$danger-dark: hsl(344, 95%, 44%);
+$danger-darker: hsl(344, 95%, 34%);
+
+$warning-lighter: hsl(31, 95%, 74%);
+$warning-light: hsl(31, 95%, 64%);
+$warning: hsl(31, 95%, 53%);
+$warning-dark: hsl(31, 95%, 44%);
+$warning-darker: hsl(31, 95%, 34%);
+
+$success-lighter: hsl(128, 92%, 74%);
+$success-light: hsl(128, 92%, 64%);
+$success: hsl(128, 92%, 39%);
+$success-dark: hsl(128, 92%, 44%);
+$success-darker: hsl(128, 92%, 34%);
 
 // ----- Layout & Breakpoints -----
 //
@@ -14,24 +98,12 @@ $monospace: Inconsolata, Consolas, monospace;
 // approach. Breakpoint sizes are inspired
 // by Bootstrap.
 
-$container: 48rem;
-$gap: $line-height * 1rem;
-
 $sm: 36rem; // 576px
 $md: 48rem; // 768px
 $lg: 62rem; // 992px
 $xl: 75rem; // 1200px
 
-// ----- Colors -----
-
-$text: #3a3d44; // #333333;
-$footer: #d0cfcf;
-$link: #5995fb; // #0268fc;
-$futureberry: #f15024;
-
-$orange: #ca4323;
-$blue: #259cb4;
-$gray: #b9b1be;
+$container: 75rem;
 
 // ----- Font Awesome -----
 //

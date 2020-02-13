@@ -411,32 +411,31 @@ template {
 
 html {
   font-size: 100%;
-  line-height: 1.3;
+  line-height: 1.7;
 }
 
 body {
-  color: #3a3d44;
+  background-color: #faf7eb;
+  font-size: 1.5em;
   font-family: Montserrat, sans-serif;
-  font-size: 1.5rem;
-  background-color: #faf8ec;
+  color: #3b3e45;
 }
 
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
-  line-height: 0.975;
-  margin: 1.3rem 0;
+h4 {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  margin: 1.1339em 0;
 }
 
 p {
-  margin: 1.3rem 0;
+  margin: 1.7em 0;
 }
 
 a {
-  color: #5995fb;
+  color: #259eb6;
   -webkit-text-decoration: underline 2px;
           text-decoration: underline 2px;
 }
@@ -445,6 +444,11 @@ a:hover,
 a:active,
 a:focus {
   text-decoration: none;
+}
+
+ul {
+  margin: 1.7em 0;
+  padding-left: 1.7em;
 }
 
 svg {
@@ -505,24 +509,6 @@ svg {
   }
 }
 
-.heartBeat {
-  -webkit-animation-name: heartBeat;
-          animation-name: heartBeat;
-  -webkit-animation-duration: 1.3s;
-          animation-duration: 1.3s;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-.infinite {
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-}
-
-#logo {
-  display: none;
-}
-
 .layout-default {
   display: -webkit-box;
   display: flex;
@@ -533,9 +519,9 @@ svg {
 }
 
 .container {
-  max-width: 48rem;
+  max-width: 75rem;
   margin: 0 auto;
-  padding: 0 1.3rem;
+  padding: 0 1.7em;
 }
 
 .wrapper-main {
@@ -543,20 +529,8 @@ svg {
           flex-grow: 1;
 }
 
-.row-leaderboard {
-  margin: 3.9rem;
-}
-
 .wrapper-main {
-  padding: 1.3rem 0;
-}
-
-.page-index .row-main p {
-  margin: 0;
-}
-
-.page-index .row-main p:nth-child(odd) {
-  color: #f15024;
+  padding: 1.7em 0;
 }
 
 #header {
@@ -568,40 +542,35 @@ svg {
 
 #logo {
   width: 17rem;
-  padding: 0.65rem 0;
+  padding: 1.1339em 0;
 }
 
 .wrapper-footer {
-  color: white;
-  background-color: #d0cfcf;
-  padding: 1.3rem 0;
-}
-
-.block-our-homes .block__title {
-  font-size: 1.5rem;
-  text-transform: uppercase;
+  color: #faf7eb;
+  background-color: #d7d5cc;
+  padding: 1.7em 0;
 }
 
 .form-contact input {
   border: none;
-  border-bottom: 2px solid #b9b1be;
-  background-color: #faf8ec;
+  border-bottom: 2px solid #8c8c8c;
+  background-color: #faf7eb;
 }
 
 .form-contact textarea {
   width: 100%;
   border: none;
-  background: repeating-linear-gradient(#faf8ec, #faf8ec 25.6px, #b9b1be 25.6px, #b9b1be 27.6px);
+  background: repeating-linear-gradient(#faf7eb, #faf7eb 25.6px, #8c8c8c 25.6px, #8c8c8c 27.6px);
 }
 
 #main {
-  color: #3a3d44;
+  color: #3b3e45;
   -webkit-transition: color 0.3s ease-in-out;
   transition: color 0.3s ease-in-out;
 }
 
 #main .keyword {
-  color: #5995fb;
+  color: #259eb6;
 }
 
 #main.hidden p,
@@ -615,20 +584,20 @@ svg {
 }
 
 #main.hidden .keyword.active {
-  color: #5995fb;
+  color: #259eb6;
 }
 
 .keyword {
-  position: relative;
-  padding: 0 0.325rem;
+  bgtion: relative;
+  padding: 0 0.7548em;
 }
 
 .keyword__link {
   color: transparent;
   background-color: transparent;
   text-decoration: none;
-  border-radius: 0.65rem;
-  padding: 0 0.65rem;
+  border-radius: 0.85rem;
+  padding: 0 1.1339em;
   -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   -webkit-transition-delay: 0.5s;
@@ -636,8 +605,8 @@ svg {
 }
 
 .keyword.active a.keyword__link {
-  color: white !important;
-  background-color: #5995fb;
+  color: #faf7eb !important;
+  background-color: #259eb6;
   z-index: 0;
 }
 
@@ -659,18 +628,9 @@ svg {
   opacity: 1;
 }
 
-.page-contact .wrapper-header {
-  color: white;
-  background-color: #ca4323;
-}
-
-.page-contact .wrapper-main .container {
-  max-width: 62rem;
-}
-
 @media (min-width: 48rem){
   .container {
-    padding: 0 2.6rem;
+    padding: 0 3.825em;
   }
 }
 

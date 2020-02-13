@@ -2,8 +2,8 @@
 
     input {
         border: none;
-        border-bottom: 2px solid $gray;
-        background-color: #faf8ec;
+        border-bottom: 2px solid $dark;
+        background-color: $bg;
     }
 
     select {}
@@ -13,10 +13,10 @@
         border: none;
 
         background: repeating-linear-gradient(
-            #faf8ec,
-            #faf8ec 25.6px,
-            $gray 25.6px,
-            $gray 27.6px
+            $bg,
+            $bg 25.6px,
+            $dark 25.6px,
+            $dark 27.6px
         );
     }
 }

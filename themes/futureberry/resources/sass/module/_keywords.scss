@@ -12,7 +12,7 @@
 //        }
 //
 //        .keyword:hover {
-//            color: $link !important;
+//            color: $accent !important;
 //        }
 //    }
 //
@@ -23,7 +23,7 @@
     transition: color .3s ease-in-out;
 
     .keyword {
-        color: $link;
+        color: $accent;
     }
 
     &.hidden {
@@ -35,22 +35,22 @@
             color: transparent;
 
             &.active {
-                color: $link;
+                color: $accent;
             }
         }
     }
 }
 
 .keyword {
-    position: relative;
-    padding: 0 ($gap * .25);
+   bgtion: relative;
+    padding: 0 $space-xs;
 
     &__link {
         color: transparent;
         background-color: transparent;
         text-decoration: none;
-        border-radius: ($line-height * .5rem);
-        padding: 0 ($gap * .5);
+        border-radius: ($body-line-height * .5rem);
+        padding: 0 $space-sm;
 
         transition:
             color .3s ease-in-out,
@@ -61,8 +61,8 @@
     &.active {
 
         a.keyword__link {
-            color: white !important;
-            background-color: $link;
+            color: $bg !important;
+            background-color: $accent;
             z-index: 0;
         }
     }
