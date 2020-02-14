@@ -2,25 +2,52 @@
  /  Forms
  / -------------------------------------------------------------------------- */
 
-.form-contact {
-
-    input {
+form {
+    input[type="text"],
+    input[type="email"] {
+        width: 300px;
+        max-width: 100%;
         border: none;
-        border-bottom: 2px solid $dark;
-        background-color: $bg;
+        border-bottom: 2px solid $darker;
+        background-color: transparent;
     }
-
-    select {}
 
     textarea {
         width: 100%;
+        max-width: 100%;
         border: none;
 
         background: repeating-linear-gradient(
-            $bg,
-            $bg 25.6px,
-            $dark 25.6px,
-            $dark 27.6px
+                transparent,
+                transparent 25.6px,
+                $darker 25.6px,
+                $darker 27.6px
         );
     }
+
+    select {
+        border: 2px dashed $darker;
+        background-color: transparent;
+        padding: 0 $space-xxs;
+    }
+
+    button,
+    input[type="submit"] {
+        border: 2px solid $darker;
+        padding: $space-xxxs $space-xxs;
+        margin-bottom: $space-md;
+        background-color: transparent;
+        transition: transform .3s ease-in-out;
+
+        &:hover,
+        &:focus {}
+
+        &:active {
+            transform: translateY(2px);
+        }
+    }
 }
+
+// ----- Contact -----
+
+.form-contact {}

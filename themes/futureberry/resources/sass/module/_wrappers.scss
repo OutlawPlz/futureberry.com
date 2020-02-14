@@ -55,3 +55,24 @@
         grid-gap: $space-lg;
     }
 }
+
+// ----- Contact page -----
+
+.page-contact {
+    .wrapper-header {
+        margin-top: 0;
+    }
+
+    .wrapper-main .container {
+        max-width: $lg;
+    }
+
+    .row-leaderboard {
+        height: 100vh;
+        background-color: $accent;
+        color: $bg;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

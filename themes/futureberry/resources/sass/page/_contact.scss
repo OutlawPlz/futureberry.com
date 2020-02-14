@@ -1,18 +1,18 @@
 .page-contact {
 
-    #logo path {
-        fill: $bg;
-    }
+    .mouse {
+        position: absolute;
+        bottom: 0; left: 50%;
+        transform: translateX(-50%);
+        height: $line; width: $line;
+        padding: $space-sm $space-xxs;
 
-    .wrapper-header {
-        height: 100vh;
-        margin-top: 0;
-        background-color: $accent;
-        color: $bg;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
+        &__wheel {
+            animation: mouseScroll 2s infinite;
+        }
 
-    .row-leaderboard {}
+        path {
+            stroke: $bg;
+        }
+    }
 }

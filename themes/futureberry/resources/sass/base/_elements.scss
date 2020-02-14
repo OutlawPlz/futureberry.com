@@ -3,6 +3,7 @@
 html {
     font-size: 100%;
     line-height: $body-line-height;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -10,10 +11,14 @@ body {
     font-size: $text-base-size;
     font-family: $font-primary;
     color: $text;
+
+    @include breakpoint($md) {
+        font-size: 1.5em;
+    }
 }
 
 h1, h2, h3, h4 {
-    font-family: $font-primary;
+    font-family: $font-heading;
     line-height: $heading-line-height;
     font-weight: 700;
     margin: $space-sm 0;

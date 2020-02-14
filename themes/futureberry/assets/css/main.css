@@ -412,11 +412,12 @@ template {
 html {
   font-size: 100%;
   line-height: 1.7;
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: #faf7eb;
-  font-size: 1.5em;
+  font-size: 1.25em;
   font-family: Montserrat, sans-serif;
   color: #3b3e45;
 }
@@ -530,6 +531,39 @@ svg {
   }
 }
 
+@-webkit-keyframes mouseScroll {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+
+  30% {
+    -webkit-transform: translateY(60px);
+            transform: translateY(60px);
+  }
+}
+
+@keyframes mouseScroll {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+
+  30% {
+    -webkit-transform: translateY(60px);
+            transform: translateY(60px);
+  }
+}
+
+.space--sm {
+  margin-top: 0.5032em;
+  margin-bottom: 0.5032em;
+}
+
+.link--light {
+  color: #faf7eb;
+}
+
 /* --------------------------------------------------------------------------
  /  Default layout
  / -------------------------------------------------------------------------- */
@@ -603,12 +637,37 @@ svg {
   grid-gap: 0.7548em;
 }
 
+.page-contact .wrapper-header {
+  margin-top: 0;
+}
+
+.page-contact .wrapper-main .container {
+  max-width: 62rem;
+}
+
+.page-contact .row-leaderboard {
+  height: 100vh;
+  background-color: #259eb6;
+  color: #faf7eb;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
 #logo {
   padding: 0.7548em 0;
 }
 
 #logo svg {
-  height: 2.55em;
+  height: 1.7em;
+}
+
+.page-contact #logo path {
+  fill: #faf7eb;
 }
 
 /* --------------------------------------------------------------------------
@@ -619,16 +678,44 @@ svg {
  /  Forms
  / -------------------------------------------------------------------------- */
 
-.form-contact input {
+form input[type=text],
+form input[type=email] {
+  width: 300px;
+  max-width: 100%;
   border: none;
-  border-bottom: 2px solid #8c8c8c;
-  background-color: #faf7eb;
+  border-bottom: 2px solid #4e5055;
+  background-color: transparent;
 }
 
-.form-contact textarea {
+form textarea {
   width: 100%;
+  max-width: 100%;
   border: none;
-  background: repeating-linear-gradient(#faf7eb, #faf7eb 25.6px, #8c8c8c 25.6px, #8c8c8c 27.6px);
+  background: repeating-linear-gradient(transparent, transparent 25.6px, #4e5055 25.6px, #4e5055 27.6px);
+}
+
+form select {
+  border: 2px dashed #4e5055;
+  background-color: transparent;
+  padding: 0 0.5032em;
+}
+
+form button,
+form input[type=submit] {
+  border: 2px solid #4e5055;
+  padding: 0.34em 0.5032em;
+  margin-bottom: 1.7em;
+  background-color: transparent;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+
+form button:active,
+form input[type=submit]:active {
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
 }
 
 /* --------------------------------------------------------------------------
@@ -669,6 +756,7 @@ svg {
 }
 
 .hotword__label {
+  font-family: Montserrat, sans-serif;
   font-weight: 700;
   background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 15%, transparent 15%, transparent 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 65%, transparent 65%, transparent 100%);
   background-size: 10px 10px;
@@ -729,7 +817,30 @@ svg {
           animation-delay: 0.75s;
 }
 
+.page-contact .mouse {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 1.7em;
+  width: 1.7em;
+  padding: 1.1339em 0.5032em;
+}
+
+.page-contact .mouse__wheel {
+  -webkit-animation: mouseScroll 2s infinite;
+          animation: mouseScroll 2s infinite;
+}
+
+.page-contact .mouse path {
+  stroke: #faf7eb;
+}
+
 @media (min-width: 48rem){
+  body {
+    font-size: 1.5em;
+  }
   .container {
     padding: 0 3.825em;
   }
@@ -739,6 +850,9 @@ svg {
   #footer {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2.55em;
+  }
+  #logo svg {
+    height: 2.55em;
   }
 }
 

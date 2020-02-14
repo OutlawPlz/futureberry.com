@@ -21,8 +21,12 @@ recaptcha_size = "normal"
 ==
 {% put leaderboard %}
     <section class="container">
-        {% content 'create-together' %}
+        {% content 'contact/create-together' %}
     </section>
+
+    <a href="#main">
+        <svg class="mouse" viewBox="0 0 247 390" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1.5"><path class="mouse__wheel" d="M123.359 79.775v72.843" fill="none" stroke="#fff" stroke-width="20"/><path d="M236.717 123.359C236.717 60.794 185.923 10 123.359 10 60.794 10 10 60.794 10 123.359v143.237c0 62.565 50.794 113.359 113.359 113.359 62.564 0 113.358-50.794 113.358-113.359V123.359z" fill="none" stroke="#fff" stroke-width="20"/></svg>
+    </a>
 {% endput %}
 
 <form data-request="{{ genericForm }}::onFormSubmit" class="form form-contact">
@@ -30,7 +34,7 @@ recaptcha_size = "normal"
 
     <div id="{{ genericForm }}_forms_flash"></div>
 
-    <p>Hi Futureberry, <br>
+    <p>Dear Futureberry, <br>
         I'm <input type="text" name="name" id="name">, I'm from
         <input type="text" name="from" id="from">. I'd like to talk with you about
         <select name="subject" id="subject">
@@ -39,13 +43,11 @@ recaptcha_size = "normal"
             <option value="job_position">Job position</option>
             <option value="other">Other</option>
         </select>. My e-mail is <input type="email" name="email" id="email"> and
-        my question is</p>
+        my question is <textarea name="note" id="note" cols="30" rows="3"></textarea></p>
 
-    <textarea name="note" id="note" cols="30" rows="7"></textarea>
-
-    <div class="form-group">
-        {% partial 'genericForm::recaptcha' %}
-    </div>
+{#    <div class="form-group">#}
+{#        {% partial 'genericForm::recaptcha' %}#}
+{#    </div>#}
 
     <button id="simpleContactSubmitButton" type="submit" class="btn btn-default">Submit</button>
 </form>

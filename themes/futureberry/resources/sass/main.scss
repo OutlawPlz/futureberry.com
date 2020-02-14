@@ -3,6 +3,7 @@
 // ----- Base -----
 @import "base/elements";
 @import "base/animations";
+@import "base/base";
 
 // ----- Layouts -----
 @import "layout/default";
@@ -15,4 +16,4 @@
 @import "module/hotword";
 
 // ----- Pages -----
-//@import "page/contact";
+@import "page/contact";
