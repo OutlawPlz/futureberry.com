@@ -426,6 +426,7 @@ h2,
 h3,
 h4 {
   font-family: Montserrat, sans-serif;
+  line-height: 1.2;
   font-weight: 700;
   margin: 1.1339em 0;
 }
@@ -634,6 +635,34 @@ svg {
  /  Hotword
  / -------------------------------------------------------------------------- */
 
+.hidden {
+  color: transparent;
+}
+
+.hidden .wrapper {
+  background-color: transparent !important;
+}
+
+.hidden span,
+.hidden ul,
+.hidden li,
+.hidden p,
+.hidden a {
+  color: transparent !important;
+}
+
+.hidden .hotword__label {
+  background: none;
+}
+
+.hidden .hotword--active .hotword__label {
+  color: #259eb6 !important;
+}
+
+.hidden .hotword--active .hotword__link {
+  color: #faf7eb !important;
+}
+
 .hotword {
   color: #259eb6;
   position: relative;
@@ -683,6 +712,8 @@ svg {
 }
 
 .hotword--active .hotword__label {
+  background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 15%, transparent 15%, transparent 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 65%, transparent 65%, transparent 100%);
+  background-size: 10px 10px;
   background-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -694,14 +725,6 @@ svg {
           animation: pulse 2s infinite;
   -webkit-animation-delay: 0.75s;
           animation-delay: 0.75s;
-}
-
-.hidden {
-  color: transparent;
-}
-
-.hidden .hotword:not(.hotword--active) {
-  color: transparent;
 }
 
 @media (min-width: 48rem){

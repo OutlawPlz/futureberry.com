@@ -201,32 +201,29 @@
         callback: function () {
             let values = this.futureberry.getHotwordValues();
             let element = this.selection.element().parentElement;
-            let link = element.querySelector('.hotword__link');
 
             if ( ! values.label || ! values.videoUrl) {
                 return this.popups.hide('futureberry.popup');
             }
 
-            let hotword = `<span class="hotword" data-video_url="${values.videoUrl}"><span class="hotword__label">${values.label}</span><a href="${values.linkUrl}" class="hotword__link">${values.linkLabel}</a></span>`;
+            let hotword = document.createElement('template');
+            hotword.innerHTML = `<span class="hotword" data-video_url="${values.videoUrl}"><span class="hotword__label">${values.label}</span><a href="${values.linkUrl}" class="hotword__link">${values.linkLabel}</a></span>`;
 
+            // If there's no link, removes link from template.
+            if ( ! values.linkLabel || ! values.linkUrl) {
+                let link = hotword.content.querySelector('.hotword__link');
+
+                hotword.content.firstChild.removeChild(link);
+            }
+
+            // If there's no previous hotword, insert template.
             if ( ! element.classList.contains('hotword')) {
-                this.html.insert(hotword);
+                this.html.insert(hotword.innerHTML);
 
                 return this.popups.hide('futureberry.popup');
             }
 
-            if (values.linkLabel && values.linkUrl) {
-                (element.outerHTML = hotword);
-
-                return this.popups.hide('futureberry.popup');
-            }
-
-            element.dataset.video_url = values.videoUrl;
-            element.firstElementChild.innerText = values.label;
-
-            if (link) {
-                element.removeChild(link);
-            }
+            element.outerHTML = hotword.innerHTML;
 
             return this.popups.hide('futureberry.popup');
         }

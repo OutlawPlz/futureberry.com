@@ -14,6 +14,7 @@ body {
 
 h1, h2, h3, h4 {
     font-family: $font-primary;
+    line-height: $heading-line-height;
     font-weight: 700;
     margin: $space-sm 0;
 }

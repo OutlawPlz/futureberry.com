@@ -1,0 +1,18 @@
+.page-contact {
+
+    #logo path {
+        fill: $bg;
+    }
+
+    .wrapper-header {
+        height: 100vh;
+        margin-top: 0;
+        background-color: $accent;
+        color: $bg;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .row-leaderboard {}
+}

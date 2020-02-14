@@ -1,7 +1,7 @@
 export default function () {
     let isTouch = ('ontouchstart' in window) || (navigator.MaxTouchPoints > 0);
 
-    let manifest = document.querySelector('#main');
+    let manifest = document.querySelector('#app');
     let video = document.querySelector('.hotword__video');
     let hotwords = document.querySelectorAll('.hotword');
 

@@ -2,6 +2,32 @@
  /  Hotword
  / -------------------------------------------------------------------------- */
 
+.hidden { // when main content is hidden
+    color: transparent;
+
+    .wrapper {
+        background-color: transparent !important;
+    }
+
+    span, ul, li, p, a {
+        color: transparent !important;
+    }
+
+    .hotword__label {
+        background: none;
+    }
+
+    .hotword--active {
+        .hotword__label {
+            color: $accent !important;
+        }
+
+        .hotword__link {
+            color: $bg !important;
+        }
+    }
+}
+
 .hotword {
     color: $accent;
     position: relative;
@@ -58,6 +84,17 @@
 .hotword--active {
 
     .hotword__label {
+        background-image: linear-gradient(
+                135deg,
+                rgba(0, 0, 0, .1) 15%,
+                transparent 15%,
+                transparent 50%,
+                rgba(0, 0, 0, .1) 50%,
+                rgba(0, 0, 0, .1) 65%,
+                transparent 65%,
+                transparent 100%
+        );
+        background-size: 10px 10px;
         background-color: rgba(255, 255, 255, .3);
     }
 
@@ -67,13 +104,5 @@
         z-index: 1;
         animation: pulse 2s infinite;
         animation-delay: .75s;
-    }
-}
-
-.hidden { // when main content is hidden
-    color: transparent;
-
-    .hotword:not(.hotword--active) {
-        color: transparent;
     }
 }

@@ -31315,7 +31315,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var isTouch = 'ontouchstart' in window || navigator.MaxTouchPoints > 0;
-  var manifest = document.querySelector('#main');
+  var manifest = document.querySelector('#app');
   var video = document.querySelector('.hotword__video');
   var hotwords = document.querySelectorAll('.hotword');
 
