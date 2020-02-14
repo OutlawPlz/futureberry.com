@@ -31323,12 +31323,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   if (isTouch) {
     window.addEventListener('click', function (event) {
       var isHotword = event.target.classList.contains('hotword') || event.target.classList.contains('hotword__label');
-      var src = getSrcAttribute(event.target);
 
       if (!isHotword) {
-        isImage(src) ? hideImage() : videoPause();
+        hideImage();
+        videoPause();
         return;
       }
+
+      var src = getSrcAttribute(event.target);
 
       if (isImage(src)) {
         image.classList.contains('hotword__image--shown') ? hideImage() : showImage(src);
@@ -31398,6 +31400,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var src = video.src;
     video.pause();
     var hotword = document.querySelector("span[data-video_url=\"".concat(src, "\"]"));
+    if (!hotword) return;
     hotword.classList.remove('hotword--active');
     manifest.classList.remove('hidden');
     video.classList.remove('hotword__video--shown');
@@ -31420,6 +31423,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var src = image.src;
     console.log(src);
     var hotword = document.querySelector("span[data-video_url=\"".concat(src, "\"]"));
+    if (!hotword) return;
     hotword.classList.remove('hotword--active');
     manifest.classList.remove('hidden');
     image.classList.remove('hotword__image--shown');

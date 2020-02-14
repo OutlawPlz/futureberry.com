@@ -11,13 +11,14 @@ export default function () {
             let isHotword = event.target.classList.contains('hotword') ||
                 event.target.classList.contains('hotword__label');
 
-            let src = getSrcAttribute(event.target);
-
             if ( ! isHotword) {
-                isImage(src) ? hideImage() : videoPause();
+                hideImage();
+                videoPause();
 
                 return;
             }
+
+            let src = getSrcAttribute(event.target);
 
             if (isImage(src)) {
                 image.classList.contains('hotword__image--shown') ?
@@ -81,6 +82,8 @@ export default function () {
 
         let hotword = document.querySelector(`span[data-video_url="${src}"]`);
 
+        if ( ! hotword) return;
+
         hotword.classList.remove('hotword--active');
         manifest.classList.remove('hidden');
         video.classList.remove('hotword__video--shown');
@@ -111,6 +114,8 @@ export default function () {
         console.log(src);
 
         let hotword = document.querySelector(`span[data-video_url="${src}"]`);
+
+        if ( ! hotword) return;
 
         hotword.classList.remove('hotword--active');
         manifest.classList.remove('hidden');
