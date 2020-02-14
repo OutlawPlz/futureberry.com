@@ -658,6 +658,53 @@ svg {
           justify-content: center;
 }
 
+.alert {
+  font-size: 1.125rem;
+  position: relative;
+  padding: 0 2.55em 0 1.1339em;
+  margin: 1.7em 0;
+}
+
+.alert-danger {
+  background-color: #fc7e9f;
+  border: 2px solid #fa4c7b;
+  color: #f91552 !important;
+}
+
+.alert-danger button {
+  color: #f91552;
+}
+
+.alert-success {
+  background-color: #80fa90;
+  border: 2px solid #4ff865;
+  color: #08bf20;
+}
+
+.alert-success button {
+  color: #08bf20;
+}
+
+.alert-warning {
+  background-color: #fcbf7e;
+  border: 2px solid #faa64c;
+  color: #f98b15;
+}
+
+.alert-warning button {
+  color: #f98b15;
+}
+
+.alert button {
+  font-weight: 700;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  padding: 1.1339em;
+  margin: 0;
+}
+
 #logo {
   padding: 0.7548em 0;
 }
@@ -710,6 +757,7 @@ form input[type=submit] {
   transition: -webkit-transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 form button:active,

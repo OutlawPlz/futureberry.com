@@ -38,6 +38,7 @@ form {
         margin-bottom: $space-md;
         background-color: transparent;
         transition: transform .3s ease-in-out;
+        cursor: pointer;
 
         &:hover,
         &:focus {}

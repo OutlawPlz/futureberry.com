@@ -1,0 +1,45 @@
+.alert {
+    font-size: 1.125rem;
+    position: relative;
+    padding: 0 $space-lg 0 $space-sm;
+    margin: $space-md 0;
+
+    &-danger {
+        background-color: $danger-lighter;
+        border: 2px solid $danger-light;
+        color: $danger !important;
+
+        button {
+            color: $danger;
+        }
+    }
+
+    &-success {
+        background-color: $success-lighter;
+        border: 2px solid $success-light;
+        color: $success;
+
+        button {
+            color: $success;
+        }
+    }
+
+    &-warning {
+        background-color: $warning-lighter;
+        border: 2px solid $warning-light;
+        color: $warning;
+
+        button {
+            color: $warning;
+        }
+    }
+
+    button {
+        font-weight: 700;
+        position: absolute;
+        top: 0; right: 0;
+        border: none;
+        padding: $space-sm;
+        margin: 0;
+    }
+}
