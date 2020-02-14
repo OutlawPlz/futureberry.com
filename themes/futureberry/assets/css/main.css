@@ -693,6 +693,7 @@ svg {
   font-weight: 700;
 }
 
+.hotword__image,
 .hotword__video {
   position: fixed;
   top: 0;
@@ -707,6 +708,7 @@ svg {
   transition: opacity 0.3s ease-in-out;
 }
 
+.hotword__image--shown,
 .hotword__video--shown {
   opacity: 1;
 }

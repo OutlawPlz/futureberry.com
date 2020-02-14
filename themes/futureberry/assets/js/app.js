@@ -31317,6 +31317,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   var isTouch = 'ontouchstart' in window || navigator.MaxTouchPoints > 0;
   var manifest = document.querySelector('#app');
   var video = document.querySelector('.hotword__video');
+  var image = document.querySelector('.hotword__image');
   var hotwords = document.querySelectorAll('.hotword');
 
   if (isTouch) {
@@ -31325,7 +31326,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var src = getSrcAttribute(event.target);
 
       if (!isHotword) {
-        return videoPause();
+        isImage(src) ? hideImage() : videoPause();
+        return;
+      }
+
+      if (isImage(src)) {
+        image.classList.contains('hotword__image--shown') ? hideImage() : showImage(src);
+        return;
       }
 
       video.paused ? videoPlay(src) : videoPause();
@@ -31334,32 +31341,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     hotwords.forEach(function (hotword) {
       hotword.addEventListener('mouseenter', function (event) {
         var src = getSrcAttribute(event.target);
-        videoPlay(src);
+        console.log(src);
+        isImage(src) ? showImage(src) : videoPlay(src);
       });
       hotword.addEventListener('mouseout', function (event) {
         if (event.relatedTarget.classList.contains('hotword') || event.relatedTarget.classList.contains('hotword__link') || event.relatedTarget.classList.contains('hotword__label')) return;
-        videoPause();
+        image.classList.contains('hotword__image--shown') ? hideImage() : videoPause();
       });
     });
-  } // hotwords.forEach(hotword => {
-  //     let label = hotword.querySelector('.hotword__label');
-  //     let link = hotword.querySelector('.hotword__link');
-  //
-  //     if ( ! link) {
-  //         return;
-  //     }
-  //
-  //     let popper = new Popper(label, link, {
-  //         placement: 'top',
-  //     });
-  // });
+  }
 
+  window.addEventListener('scroll', _.throttle(function (event) {
+    if (image.classList.contains('hotword__image--shown')) {
+      hideImage();
+    }
 
-  window.addEventListener('scroll', _.debounce(function (event) {
     if (!video.paused) {
       videoPause();
     }
-  }, 150));
+  }, 300));
 
   function videoPlay(_x) {
     return _videoPlay.apply(this, arguments);
@@ -31401,6 +31401,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     hotword.classList.remove('hotword--active');
     manifest.classList.remove('hidden');
     video.classList.remove('hotword__video--shown');
+  }
+
+  function isImage(src) {
+    var extension = src.split('.').pop();
+    return extension !== 'mp4';
+  }
+
+  function showImage(src) {
+    image.src = src;
+    var hotword = document.querySelector("span[data-video_url=\"".concat(src, "\"]"));
+    hotword.classList.add('hotword--active');
+    manifest.classList.add('hidden');
+    image.classList.add('hotword__image--shown');
+  }
+
+  function hideImage() {
+    var src = image.src;
+    console.log(src);
+    var hotword = document.querySelector("span[data-video_url=\"".concat(src, "\"]"));
+    hotword.classList.remove('hotword--active');
+    manifest.classList.remove('hidden');
+    image.classList.remove('hotword__image--shown');
   }
 
   function getSrcAttribute(element) {
